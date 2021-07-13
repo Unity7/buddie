@@ -1,4 +1,40 @@
-## Deep Thoughts 
+# Buddie Social Media Application
 
-# Deployed App
-https://deep-thoughts-4jul21.herokuapp.com/
+## Description
+
+This application is a social media platform that allows users to manage their househouse relations, share their messages, and information with other members on the platform.
+
+## Table of Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
+
+## Installation
+
+Clone the Repo\
+Run npm install in your terminal\
+Run server.js\
+https://buddie-app.herokuapp.com/
+
+## Usage
+
+This program is available and open to all users
+
+## License
+
+Currently does not have any license
+
+## Contributing
+
+No Active Contribution
+
+## Tests
+
+local test
+
+## Questions
+
+GitHub: https://github.com/Unity7
+
+https://buddie-app.herokuapp.com/
