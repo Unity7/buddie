@@ -49,16 +49,16 @@ const typeDefs = gql`
     me: User
     users: [User]
     user(username: String!): User
-    tasks(username: String): [Task]
+    tasks: [Task]
     task(_id: ID!): Task
     }
 
   type Mutation {
     login(email: String!, password: String!): Auth
-    addUser(username: String!, email: String!, password: String!): Auth
+    addUser(username: String!, email: String!, first_name: String, last_name:String, password: String!): Auth
     addTask(taskText: String!): Task
     addMessage(messageText: String!): Message
-    addReply(taskId: ID!, replyBody: String!): Task
+    addReply(messageId: ID!, replyBody: String!): Message
     addFriend(friendId: ID!): User
   }
 

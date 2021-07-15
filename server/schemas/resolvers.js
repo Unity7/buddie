@@ -21,9 +21,8 @@ const resolvers = {
       throw new AuthenticationError('Not logged in');
     },
     // -------- get all tasks ---- Question: if we just want all tasks and don't care about the user part how would we change this?
-    tasks: async (parent, { username }) => {
-      const params = username ? { username } : {};
-      return Task.find(params).sort({ createdAt: -1 });
+    tasks: async () => {
+      return Task.find().sort({ createdAt: -1 });
     },
     // -------------- find a single task -------------- //
     task: async (parent, { _id }) => {
@@ -45,7 +44,7 @@ const resolvers = {
         .populate('tasks');
     },
   },
-  
+
   Mutation: {
     addUser: async (parent, args) => {
       const user = await User.create(args);
@@ -53,6 +52,7 @@ const resolvers = {
     
       return { token, user };
     },
+
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
     
@@ -84,6 +84,7 @@ const resolvers = {
     addTask: async (parent, args, context) => {
       if (context.user) {
         const task = await Task.create({ ...args, username: context.user.username });
+
         await User.findByIdAndUpdate(
           { _id: context.user._id },
           { $push: { tasks: task._id } },
@@ -118,13 +119,22 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     }
   }
-  // need delete task mutation 
 
+  // task malipuations assign, update status, deleting 
   // need delete message mutation? 
 
 };
   
-
+// {
+//   "data": {
+//     "login": {
+//       "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJuYW1lIjoiYm9iIiwiZW1haWwiOiJib2JAZW1haWwuY29tIiwiX2lkIjoiNjBlZjk5MjZhMjZkZWYyMjAzNTlhYmM1In0sImlhdCI6MTYyNjMxNTA5NSwiZXhwIjoxNjI2NDAxNDk1fQ.oDGOvOGlUqxSu32CW_9B1r5mBLgTieLhzHvYaaPm6QQ",
+//       "user": {
+//         "_id": "60ef9926a26def220359abc5"
+//       }
+//     }
+//   }
+// }
 
 
 module.exports = resolvers;
