@@ -3,6 +3,7 @@ const { User, Task, Message, Pod } = require('../models');
 // import signin token
 const { signToken } = require('../utils/auth');
 const { AuthenticationError } = require('apollo-server-express');
+const { async } = require('rxjs');
 
 const resolvers = {
   Query: {
@@ -94,6 +95,32 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+    deleteTask: async(parent, args, context)=> {
+      if (context.user) {
+        const task = await Task.findOneAndRemove({_id: args._id});
+        await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $pull: { tasks: task._id } }
+        );
+        return task;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    updateTask: async(parent, args, context) => {
+      if (context.user) {
+        // empty object to hold what is being passed in
+        const updatedField = {}
+        if(args.taskStatus != null){
+          updatedField.taskStatus = args.taskStatus
+        };
+        if(args.assignedID != null){
+            updatedField.assignedID = args.assignedID
+        };
+        const task = await Task.findOneAndUpdate({_id: args._id}, updatedField,  { new: true });
+        return task;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
     addReply: async (parent, { messageId, replyBody }, context) => {
       if (context.user) {
         const updatedMessage = await Message.findOneAndUpdate(
@@ -120,21 +147,11 @@ const resolvers = {
     }
   }
 
-  // task malipuations assign, update status, deleting 
+
   // need delete message mutation? 
 
 };
-  
-// {
-//   "data": {
-//     "login": {
-//       "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJuYW1lIjoiYm9iIiwiZW1haWwiOiJib2JAZW1haWwuY29tIiwiX2lkIjoiNjBlZjk5MjZhMjZkZWYyMjAzNTlhYmM1In0sImlhdCI6MTYyNjMxNTA5NSwiZXhwIjoxNjI2NDAxNDk1fQ.oDGOvOGlUqxSu32CW_9B1r5mBLgTieLhzHvYaaPm6QQ",
-//       "user": {
-//         "_id": "60ef9926a26def220359abc5"
-//       }
-//     }
-//   }
-// }
+
 
 
 module.exports = resolvers;
