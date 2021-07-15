@@ -1,5 +1,5 @@
 // created this after setting up our query in typeDefs.js
-const { User, Thought } = require('../models');
+const { User, Task, Message, Pod } = require('../models');
 // import signin token
 const { signToken } = require('../utils/auth');
 const { AuthenticationError } = require('apollo-server-express');
@@ -13,38 +13,39 @@ const resolvers = {
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id })
           .select('-__v -password')
-          .populate('thoughts')
+          .populate('tasks')
           .populate('friends');
     
         return userData;
       }
-    
       throw new AuthenticationError('Not logged in');
     },
-    // get all thoughts
-    thoughts: async (parent, { username }) => {
+    // -------- get all tasks ---- Question: if we just want all tasks and don't care about the user part how would we change this?
+    tasks: async (parent, { username }) => {
       const params = username ? { username } : {};
-      return Thought.find(params).sort({ createdAt: -1 });
+      return Task.find(params).sort({ createdAt: -1 });
     },
-    // find a single thought
-    thought: async (parent, { _id }) => {
-      return Thought.findOne({ _id });
+    // -------------- find a single task -------------- //
+    task: async (parent, { _id }) => {
+      return Task.findOne({ _id });
     },
-    // get all users
+   // -------------- get all users -------------- //
     users: async () => {
       return User.find()
         .select('-__v -password')
         .populate('friends')
-        .populate('thoughts');
+        .populate('tasks');
     },
-    // get a user by username
+
+     // -------------- get a user by username -------------- //
     user: async (parent, { username }) => {
       return User.findOne({ username })
         .select('-__v -password')
         .populate('friends')
-        .populate('thoughts');
+        .populate('tasks');
     },
   },
+  
   Mutation: {
     addUser: async (parent, args) => {
       const user = await User.create(args);
@@ -68,29 +69,39 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    addThought: async (parent, args, context) => {
+    addMessage: async (parent, args, context) => {
       if (context.user) {
-        const thought = await Thought.create({ ...args, username: context.user.username });
-    
+        const message = await Message.create({ ...args, username: context.user.username });
         await User.findByIdAndUpdate(
           { _id: context.user._id },
-          { $push: { thoughts: thought._id } },
+          { $push: { message: message._id } },
           { new: true }
         );
-    
-        return thought;
+        return message;
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    addReaction: async (parent, { thoughtId, reactionBody }, context) => {
+    addTask: async (parent, args, context) => {
       if (context.user) {
-        const updatedThought = await Thought.findOneAndUpdate(
-          { _id: thoughtId },
-          { $push: { reactions: { reactionBody, username: context.user.username } } },
+        const task = await Task.create({ ...args, username: context.user.username });
+        await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { tasks: task._id } },
+          { new: true }
+        );
+        return task;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    addReply: async (parent, { messageId, replyBody }, context) => {
+      if (context.user) {
+        const updatedMessage = await Message.findOneAndUpdate(
+          { _id: messageId },
+          { $push: { replies: { replyBody, username: context.user.username } } },
           { new: true, runValidators: true }
         );
     
-        return updatedThought;
+        return updatedMessage;
       }
     
       throw new AuthenticationError('You need to be logged in!');
@@ -102,26 +113,18 @@ const resolvers = {
           { $addToSet: { friends: friendId } },
           { new: true }
         ).populate('friends');
-    
         return updatedUser;
       }
-    
       throw new AuthenticationError('You need to be logged in!');
     }
   }
+  // need delete task mutation 
+
+  // need delete message mutation? 
+
 };
   
 
 
 
-// {
-//   "data": {
-//     "addUser": {
-//       "_id": "60dc6a27ca73260665dc6ecd",
-//       "username": "celinalou92",
-//       "email": "celinalouissaint@gmail.com"
-//     }
-//   }
-// }
-// token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJuYW1lIjoiY2VsaW5hbG91OTIiLCJlbWFpbCI6ImNlbGluYWxvdWlzc2FpbnRAZ21haWwuY29tIiwiX2lkIjoiNjBkYzZhMjdjYTczMjYwNjY1ZGM2ZWNkIn0sImlhdCI6MTYyNTA2MDQxOSwiZXhwIjoxNjI1MDY3NjE5fQ.I0C52N6wI4XY9iz7p0LQ-hZD2V3nM0RylKLxwqWFlts
 module.exports = resolvers;

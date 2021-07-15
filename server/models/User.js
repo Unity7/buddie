@@ -9,6 +9,18 @@ const userSchema = new Schema(
       unique: true,
       trim: true
     },
+    first_name:  {
+      type: String,
+      required: true,
+      unique: true,
+      trim: true
+    },
+    last_name:  {
+      type: String,
+      required: true,
+      unique: true,
+      trim: true
+    },
     email: {
       type: String,
       required: true,
@@ -20,10 +32,14 @@ const userSchema = new Schema(
       required: true,
       minlength: 5
     },
-    thoughts: [
+    podID: {
+      type: Schema.Types.ObjectId,
+      ref: 'Pod'
+    },
+    tasks: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Thought'
+        ref: 'Task'
       }
     ],
     friends: [
@@ -46,7 +62,6 @@ userSchema.pre('save', async function(next) {
     const saltRounds = 10;
     this.password = await bcrypt.hash(this.password, saltRounds);
   }
-
   next();
 });
 

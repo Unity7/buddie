@@ -1,4 +1,6 @@
 const User = require('./User');
-const Thought = require('./Thought');
+const Message = require('./Message');
+const Pod = require('./Pod');
+const Task = require('./Task')
 
-module.exports = { User, Thought };
+module.exports = { User, Message, Task, Pod };

@@ -3,18 +3,17 @@ const { gql } = require('apollo-server-express');
 
 // create our typeDefs
 const typeDefs = gql`
-  type Thought {
+  type Message {
   _id: ID
-  thoughtText: String
+  messageText: String
   createdAt: String
   username: String
-  reactionCount: Int
-  reactions: [Reaction]
+  replies: [Reply]
   }
 
-  type Reaction {
+  type Reply {
     _id: ID
-    reactionBody: String
+    replyBody: String
     createdAt: String
     username: String
   }
@@ -22,25 +21,44 @@ const typeDefs = gql`
   type User {
     _id: ID
     username: String
+    first_name: String
+    last_name: String
     email: String
+    podID: [Pod]
     friendCount: Int
-    thoughts: [Thought]
+    tasks: [Task]
     friends: [User]
+  }
+
+  type Task {
+    _id: ID
+    taskText: String
+    podID: [Pod]
+    username: String
+    taskStatus: Boolean
+    assignedID: String
+    createdAt: String
+  }
+
+  type Pod {
+    _id: ID
+    users: [User]
   }
   
   type Query {
     me: User
     users: [User]
     user(username: String!): User
-    thoughts(username: String): [Thought]
-    thought(_id: ID!): Thought
+    tasks(username: String): [Task]
+    task(_id: ID!): Task
     }
 
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    addThought(thoughtText: String!): Thought
-    addReaction(thoughtId: ID!, reactionBody: String!): Thought
+    addTask(taskText: String!): Task
+    addMessage(messageText: String!): Message
+    addReply(taskId: ID!, replyBody: String!): Task
     addFriend(friendId: ID!): User
   }
 
