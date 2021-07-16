@@ -51,6 +51,7 @@ const typeDefs = gql`
     user(username: String!): User
     tasks: [Task]
     task(_id: ID!): Task
+    messages: [Message]
     }
 
   type Mutation {
@@ -62,6 +63,7 @@ const typeDefs = gql`
     addMessage(messageText: String!): Message
     addReply(messageId: ID!, replyBody: String!): Message
     addFriend(friendId: ID!): User
+    deleteMessage(_id: ID!): Message
   }
 
   type Auth {
