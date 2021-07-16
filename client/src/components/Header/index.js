@@ -9,15 +9,23 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-secondary mb-4 py-2 flex-row align-center">
+    <header className="buddieMainColor mb-4 py-2 flex-row align-center">
       <div className="container flex-row justify-space-between-lg justify-center align-center">
         <Link to="/">
-          <h1>Buddie</h1>
+          <img
+            src={require(`../../assets/images/buddie_logo.png`).default}
+            alt="buddie logo"
+            className="buddieLogo"
+            key="logoBuddie"
+          />
         </Link>
 
         <nav className="text-center">
+          <Link to="/dashboard">DASHBOARD</Link>
+          <Link to="/taskboard">TASKBOARD</Link>
           {Auth.loggedIn() ? (
             <>
+              {/* if logged in go to dashboard? */}
               <Link to="/profile">Me</Link>
               <a href="/" onClick={logout}>
                 Logout
@@ -25,8 +33,8 @@ const Header = () => {
             </>
           ) : (
             <>
-              <Link to="/login">Login</Link>
-              <Link to="/signup">Signup</Link>
+              <Link to="/login">LOGIN</Link>
+              <Link to="/signup">SIGN UP</Link>
             </>
           )}
         </nav>

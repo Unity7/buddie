@@ -1248,3 +1248,14 @@ nav a:hover {
     align-items: center;
   }
 }
+
+.buddieLogo {
+  height: 45px;
+}
+
+.buddieMainColor{
+  /* background-color:#FAD02C;  */
+  /* background-color: cornsilk; */
+  background-color: aliceblue
+  /* background-color: #333652 */
+}
