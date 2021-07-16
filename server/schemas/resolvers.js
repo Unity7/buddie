@@ -35,6 +35,9 @@ const resolvers = {
         .populate('friends')
         .populate('tasks');
     },
+    messages: async () => {
+      return Message.find()
+    },
 
      // -------------- get a user by username -------------- //
     user: async (parent, { username }) => {
@@ -81,6 +84,18 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+    deleteMessage: async (parent, args, context) => {
+      if (context.user) {
+        const message = await Message.findOneAndRemove({ ...args, username: context.user.username });
+        await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $pull: { message: message._id } },
+          // { new: true }
+        );
+        return message;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
     addTask: async (parent, args, context) => {
       if (context.user) {
         const task = await Task.create({ ...args, username: context.user.username });
@@ -117,11 +132,13 @@ const resolvers = {
         return updatedUser;
       }
       throw new AuthenticationError('You need to be logged in!');
-    }
+    },
+    
   }
 
-  // task malipuations assign, update status, deleting 
   // need delete message mutation? 
+  // update message?
+
 
 };
   
