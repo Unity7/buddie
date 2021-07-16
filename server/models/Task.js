@@ -20,14 +20,15 @@ const taskSchema = new Schema(
             type: Boolean,
             default: false
         },
-       assignedID: {
-           type: String
-       },
-       createdAt: {
-        type: Date,
-        default: Date.now,
-        get: timestamp => dateFormat(timestamp)
-      }
+        assignedID: {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        },
+        createdAt: {
+            type: Date,
+            default: Date.now,
+            get: timestamp => dateFormat(timestamp)
+        }
     }
 )
 
