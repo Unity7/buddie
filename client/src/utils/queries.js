@@ -1,45 +1,38 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_THOUGHTS = gql`
-  query thoughts($username: String) {
-    thoughts(username: $username) {
+export const QUERY_TASKS = gql`
+  query {
+    tasks {
       _id
-      thoughtText
-      createdAt
       username
-      reactionCount
-      reactions {
-        _id
-        createdAt
-        username
-        reactionBody
-      }
+      taskText
+      taskStatus
+      createdAt
+      assignedID
+      taskStatus
     }
   }
 `;
 
-export const QUERY_THOUGHT = gql`
-  query thought($id: ID!) {
-    thought(_id: $id) {
-      _id
-      thoughtText
-      createdAt
-      username
-      reactionCount
-      reactions {
-        _id
-        createdAt
-        username
-        reactionBody
-      }
-    }
+export const QUERY_TASK = gql`
+query task($_id: ID!){
+  task(_id: $_id) {
+    _id
+    username
+    assignedID
+    taskText
+    taskStatus
+    createdAt
   }
+}
 `;
 
 export const QUERY_USER = gql`
   query user($username: String!) {
     user(username: $username) {
       _id
+      first_name
+      last_name
       username
       email
       friendCount
@@ -47,40 +40,37 @@ export const QUERY_USER = gql`
         _id
         username
       }
-      thoughts {
-        _id
-        thoughtText
+      tasks {
+        taskText
+        taskStatus
+        assignedID
         createdAt
-        reactionCount
       }
     }
   }
 `;
 
+
 export const QUERY_ME = gql`
   {
     me {
+    _id
+    username
+    first_name
+    last_name
+    email
+    friendCount
+    tasks {
+      taskText
+      taskStatus
+      assignedID
+      createdAt
+    }
+    friends {
       _id
       username
-      email
-      friendCount
-      thoughts {
-        _id
-        thoughtText
-        createdAt
-        reactionCount
-        reactions {
-          _id
-          createdAt
-          reactionBody
-          username
-        }
-      }
-      friends {
-        _id
-        username
-      }
     }
+  }
   }
 `;
 
@@ -91,10 +81,42 @@ export const QUERY_ME_BASIC = gql`
       username
       email
       friendCount
+      tasks {
+        taskText
+      }
       friends {
         _id
         username
       }
+    }
+  }
+`;
+
+// Delete Later 
+export const QUERY_THOUGHT = gql`
+  query {
+    tasks {
+      _id
+      username
+      taskText
+      taskStatus
+      createdAt
+      assignedID
+      taskStatus
+    }
+  }
+`;
+
+export const QUERY_THOUGHTS = gql`
+  query {
+    tasks {
+      _id
+      username
+      taskText
+      taskStatus
+      createdAt
+      assignedID
+      taskStatus
     }
   }
 `;
