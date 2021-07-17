@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
-import { LOGIN_USER } from '../utils/mutations';
-import Auth from '../utils/auth';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+import React, { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { LOGIN_USER } from "../utils/mutations";
+import Auth from "../utils/auth";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import Link from "@material-ui/core/Link";
+import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
 
 const Login = (props) => {
-  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [formState, setFormState] = useState({ email: "", password: "" });
 
   const [login, { error }] = useMutation(LOGIN_USER);
   // update state based on form input changes
@@ -24,19 +24,19 @@ const Login = (props) => {
 
     setFormState({
       ...formState,
-        [name]: value,
+      [name]: value,
     });
   };
-    
+
   // submit form
-  const handleFormSubmit = async event => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
 
     try {
       const { data } = await login({
-        variables: { ...formState }
+        variables: { ...formState },
       });
-    
+
       Auth.login(data.login.token);
     } catch (e) {
       console.error(e);
@@ -46,25 +46,25 @@ const Login = (props) => {
   function Copyright() {
     return (
       <Typography variant="body2" color="textSecondary" align="center">
-        {'Copyright © '}
+        {"Copyright © "}
         <Link color="inherit" href="/">
           Buddie
-        </Link>{' '}
+        </Link>{" "}
         {new Date().getFullYear()}
-        {'.'}
+        {"."}
       </Typography>
     );
   }
-  
+
   const useStyles = makeStyles((theme) => ({
     paper: {
       marginTop: theme.spacing(8),
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
     },
     form: {
-      width: '100%', // Fix IE 11 issue.
+      width: "100%", // Fix IE 11 issue.
       marginTop: theme.spacing(1),
     },
     submit: {
@@ -72,7 +72,7 @@ const Login = (props) => {
     },
   }));
 
-    const classes = useStyles();
+  const classes = useStyles();
 
   return (
     // <main className='flex-row justify-center mb-4'>
@@ -127,6 +127,7 @@ const Login = (props) => {
             autoFocus
             onChange={handleChange}
           />
+
           <TextField
             variant="outlined"
             margin="normal"
@@ -138,6 +139,7 @@ const Login = (props) => {
             id="password"
             autoComplete="current-password"
             value={formState.password}
+            onChange={handleChange}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
