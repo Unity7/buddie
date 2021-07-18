@@ -13,7 +13,7 @@ const Header = () => {
       <div className="container flex-row justify-space-between-lg justify-center align-center">
         <Link to="/">
           <img
-            src={require(`../../assets/images/buddie_logo.png`).default}
+            src={require(`../../assets/images/buddie_logo3.png`).default}
             alt="buddie logo"
             className="buddieLogo"
             key="logoBuddie"
