@@ -34,13 +34,15 @@ body {
   /* background-color:#FAD02C;  */
   /* background-color: cornsilk; */
   /* background-color: aliceblue; */
-  background: linear-gradient(
-    180deg
-    , white 50%, rgb(222, 236, 249) 85%);
+  background: linear-gradient(180deg, white 50%, rgb(222, 236, 249) 85%);
+    /* change back to 180 deg */
   /* background-color: ghostwhite; */
   /* background-color: #333652 */
   /* background-color: #F9F6F0; */
+
 }
+
+
 
 h1,
 h2,
@@ -172,6 +174,43 @@ nav a:hover {
 .card-body {
   padding: 2.5%;
   font-size: 1.4rem;
+}
+
+/* .credCards {
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px, rgba(0, 0, 0, 0.1) 0px 8px 16px;
+  height: 325px;
+  background-color: #fad02c;
+} */
+
+.credCards {
+  background: linear-gradient(92deg, #f3cb2e, #ecb252, #f57972);
+  background-size: 400% 400%;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px, rgba(0, 0, 0, 0.1) 0px 8px 16px;
+  height: 325px;
+  color: rgb(18, 113, 215);
+  
+
+  -webkit-animation: AnimationName 15s ease infinite;
+  -moz-animation: AnimationName 15s ease infinite;
+  animation: AnimationName 15s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@-moz-keyframes AnimationName {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@keyframes AnimationName {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
 }
 
 /* FORM */
