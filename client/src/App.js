@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState }  from "react";
 // reacter router dom
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import {
@@ -17,14 +17,16 @@ import {
 import { setContext } from "@apollo/client/link/context";
 // get token from local storage using this above
 
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import NoMatch from "./pages/NoMatch";
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import NoMatch from './pages/NoMatch';
+import Profile from './pages/Profile';
+import Signup from './pages/Signup';
+import Taskboard from './pages/Taskboard';
 import SingleMessage from "./pages/SingleMessage";
-import Profile from "./pages/Profile";
-import Signup from "./pages/Signup";
+
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -39,6 +41,8 @@ const authLink = setContext((_, { headers }) => {
     },
   };
 });
+
+
 
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
@@ -60,6 +64,9 @@ const client = new ApolloClient({
 // After we create the link, we use the ApolloClient() constructor to instantiate the Apollo Client instance and create the connection to the API endpoint. We also instantiate a new cache object using new InMemoryCache().
 
 function App() {
+  
+
+
   return (
     <ApolloProvider client={client}>
       <Router>
@@ -71,6 +78,7 @@ function App() {
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
               <Route exact path="/profile/:username?" component={Profile} />
+              <Route exact path="/taskboard" component={Taskboard} />
               <Route exact path="/message/:id" component={SingleMessage} />
               <Route component={NoMatch} />
             </Switch>
