@@ -1,14 +1,15 @@
 // import the gql tagged template function
-const { gql } = require('apollo-server-express');
+const { gql } = require("apollo-server-express");
 
 // create our typeDefs
 const typeDefs = gql`
   type Message {
-  _id: ID
-  messageText: String
-  createdAt: String
-  username: String
-  replies: [Reply]
+    _id: ID
+    messageText: String
+    createdAt: String
+    username: String
+    replyCount: Int
+    replies: [Reply]
   }
 
   type Reply {
@@ -44,7 +45,7 @@ const typeDefs = gql`
     _id: ID
     users: [User]
   }
-  
+
   type Query {
     me: User
     users: [User]
@@ -52,11 +53,18 @@ const typeDefs = gql`
     tasks: [Task]
     task(_id: ID!): Task
     messages: [Message]
-    }
+    message(_id: ID!): Message
+  }
 
   type Mutation {
     login(email: String!, password: String!): Auth
-    addUser(username: String!, email: String!, first_name: String, last_name:String, password: String!): Auth
+    addUser(
+      username: String!
+      email: String!
+      first_name: String
+      last_name: String
+      password: String!
+    ): Auth
     addTask(taskText: String!): Task
     deleteTask(_id: ID!): Task
     updateTask(_id: ID!, taskStatus: Boolean, assignedID: ID): Task
