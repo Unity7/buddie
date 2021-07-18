@@ -112,7 +112,6 @@ nav {
 nav a {
   padding: 6px 10px;
   margin: 0 15px;
-  transition: all 0.1s;
 }
 
 nav a:hover {
@@ -211,6 +210,13 @@ nav a:hover {
   0%{background-position:0% 50%}
   50%{background-position:100% 50%}
   100%{background-position:0% 50%}
+}
+
+.compBorders {
+  border-radius: 22px;
+  background-color: #f3cb2e;
+  width: auto;
+  height: auto;
 }
 
 /* FORM */
