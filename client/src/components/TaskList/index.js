@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
-import { QUERY_TASKS, QUERY_ME } from '../../utils/queries';
+import { UPDATE_TASK, DELETE_TASK } from '../../utils/mutations';
 
 // -----------------------------  task list styles ----------------------------- //
 import { makeStyles } from '@material-ui/core/styles';
@@ -14,6 +14,12 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import { Button } from '@material-ui/core';
+
+
+import { useMutation } from '@apollo/client';
+
+
+
 
 const useStyles = makeStyles((theme) => ({
   // -----------------------------  task list styles ----------------------------- //
@@ -57,6 +63,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
+  },
+  statusBtn: {
+
   }
   // -----------------------------  task list styles ----------------------------- //
 }));
@@ -67,7 +76,20 @@ const TaskList = ({ tasks }) => {
   // if (!tasks.length) {
   //   return <h3>No Tasks Yet</h3>;
   // }
+  // capture status into state
+  // const [updateTask, ] = useMutation(UPDATE_TASK);
+  // const [deleteTask] = useMutation(DELETE_TASK);  
+  const [statusState, setStatus] = useState(false);
 
+  const handleStatus = event => {
+    console.log(`
+    =====================
+    Status button clicked
+    =====================
+    ${event.target.value}
+    `)
+    
+  }
   return (
     <div>
       { tasks &&
@@ -86,9 +108,9 @@ const TaskList = ({ tasks }) => {
                 <Grid item className={classes.taskItem}>
                   <ButtonBase>
                     {!task.taskStatus ? (
-                      <Button>TODO</Button>
+                      <Button onClick={handleStatus}>TODO</Button>
                     ) : (
-                      <Button>DONE</Button>
+                      <Button onClick={handleStatus}>DONE</Button>
                     )}
                   </ButtonBase>
                 </Grid>
