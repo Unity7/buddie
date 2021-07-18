@@ -10,9 +10,9 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+
 
 const Login = (props) => {
   const [formState, setFormState] = useState({ email: "", password: "" });
@@ -43,19 +43,6 @@ const Login = (props) => {
     }
   };
 
-  function Copyright() {
-    return (
-      <Typography variant="body2" color="textSecondary" align="center">
-        {"Copyright © "}
-        <Link color="inherit" href="/">
-          Buddie
-        </Link>{" "}
-        {new Date().getFullYear()}
-        {"."}
-      </Typography>
-    );
-  }
-
   const useStyles = makeStyles((theme) => ({
     paper: {
       marginTop: theme.spacing(8),
@@ -75,45 +62,10 @@ const Login = (props) => {
   const classes = useStyles();
 
   return (
-    // <main className='flex-row justify-center mb-4'>
-    //   <div className='col-12 col-md-6'>
-    //     <div className='card'>
-    //       <h4 className='card-header'>Login</h4>
-    //       <div className='card-body'>
-    //         <form onSubmit={handleFormSubmit}>
-    //           <input
-    //             className='form-input'
-    //             placeholder='Your email'
-    //             name='email'
-    //             type='email'
-    //             id='email'
-    //             value={formState.email}
-    //             onChange={handleChange}
-    //           />
-    //           <input
-    //             className='form-input'
-    //             placeholder='******'
-    //             name='password'
-    //             type='password'
-    //             id='password'
-    //             value={formState.password}
-    //             onChange={handleChange}
-    //           />
-    //           <button className='btn d-block w-100' type='submit'>
-    //             Submit
-    //           </button>
-    //         </form>
-    //         {error && <div>Login failed</div>}
-    //       </div>
-    //     </div>
-    //   </div>
-    // </main>
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" className="credCards">
       <CssBaseline />
       <div className={classes.paper}>
-        <Typography component="h1" variant="h5">
-          Login
-        </Typography>
+
         <form className={classes.form} noValidate onSubmit={handleFormSubmit}>
           <TextField
             variant="outlined"
@@ -150,10 +102,11 @@ const Login = (props) => {
             type="submit"
             fullWidth
             variant="contained"
-            color="primary"
-            className={classes.submit}
+            className={classes.submit} 
+            color="primary" 
+            
           >
-            SIGN IN
+            LOG IN
           </Button>
           <Grid container>
             <Grid item xs>
@@ -162,7 +115,7 @@ const Login = (props) => {
               </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/signup"  variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
@@ -170,7 +123,7 @@ const Login = (props) => {
         </form>
       </div>
       <Box mt={8}>
-        <Copyright />
+      
       </Box>
     </Container>
   );

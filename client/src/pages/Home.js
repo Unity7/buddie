@@ -33,14 +33,16 @@ const Home = () => {
 
   return (
     <main>
-      <Grid direction="row" container spacing={1}>
+      <Grid direction="row" container spacing={6}>
         <Grid container item sm={6}>
+          <div className="flex-row justify-space-between compBorders">
           Place Holder, This section is for the my task
+          </div>
         </Grid>
         <Grid container item sm={6}>
           <div className="flex-row justify-space-between">
             
-            <div className={`col-12 mb-3 ${loggedIn && "col-lg-8"}`}>
+            <div className={`col-12 mb-3 compBorders ${loggedIn && "col-lg-8"}`}>
               {loading ? (
                 <div>Loading...</div>
               ) : (
