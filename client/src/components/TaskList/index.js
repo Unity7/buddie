@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import { UPDATE_TASK, DELETE_TASK } from '../../utils/mutations';
 
@@ -13,7 +13,6 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import { Button } from '@material-ui/core';
  // -----------------------------  task list styles ----------------------------- //
 
 import { useMutation } from '@apollo/client';
@@ -70,24 +69,48 @@ const useStyles = makeStyles((theme) => ({
 // -----------------------------  task list styles ----------------------------- //
 const TaskList = ({ tasks }) => {
   const classes = useStyles();
-  
   // if (!tasks.length) {
   //   return <h3>No Tasks Yet</h3>;
   // }
-  // capture status into state
-  // const [updateTask, ] = useMutation(UPDATE_TASK);
-  // const [deleteTask] = useMutation(DELETE_TASK);  
-  const [statusState, setStatus] = useState(false);
 
+  // ----------------------- Updating Tasks ----------------------- //
+  // set state to track changes in status the inital value = false 
+  const [status, setStatus] = useState(false)
+
+  // const [updateTask, {error}] = useMutation(UPDATE_TASK, {})
   const handleStatus = event => {
+
+    const currentStatus = event.target.value
     console.log(`
     =====================
-    Status button clicked
+    Status ${currentStatus}
     =====================
-    ${event.target.value}
-    `)
     
+    `)
+    // if the value of the task's state is false 
+    if(currentStatus === false) {
+      //set new state to true
+      const newStatus = setStatus(true)
+        console.log(`
+      =====================
+      New Status ${newStatus}
+      =====================
+      
+      `)
+    } // else set to false  
   }
+// ------------------------------- Deleting Task ---------------------------------------- //
+// set current state with current taskList object
+const [state, setTaskList] = useState(...tasks);
+
+
+const deleteTask = ({_id}) => {
+  // update state and create new task list without deleted task
+  let newTaskList = state.filter( task => !_id );
+};
+
+
+
   return (
     <div>
       { tasks &&
@@ -106,9 +129,10 @@ const TaskList = ({ tasks }) => {
                 <Grid item className={classes.taskItem}>
                   <ButtonBase>
                     {!task.taskStatus ? (
-                      <Button onClick={handleStatus}>TODO</Button>
+                      // <Button value={task.taskStatus} onClick={handleStatus}>TODO</Button>
+                     <button value={status} onClick={handleStatus}>TODO</button>
                     ) : (
-                      <Button onClick={handleStatus}>DONE</Button>
+                      <button value={status} onClick={handleStatus}>DONE</button>
                     )}
                   </ButtonBase>
                 </Grid>
@@ -129,9 +153,9 @@ const TaskList = ({ tasks }) => {
                   </Select>
                 </Grid>
                 <Grid item className={classes.taskItem}>
-                  <Fab color="secondary" aria-label="delete">
-                    <DeleteIcon />
-                  </Fab>
+                    <Fab color="secondary" aria-label="delete" value={task._id} onClick={deleteTask}>
+                      <DeleteIcon />
+                    </Fab>
                 </Grid>
               </Grid>
             </Paper>

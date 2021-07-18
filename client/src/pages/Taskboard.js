@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Redirect, useParams } from 'react-router-dom';
 import TaskList from '../components/TaskList';
 import TaskForm from '../components/TaskForm';
 import FriendList from '../components/FriendList';
 import { ADD_FRIEND, ADD_TASK, DELETE_TASK, UPDATE_TASK } from '../utils/mutations';
 import { useQuery, useMutation } from '@apollo/client';
-import { QUERY_USER, QUERY_ME, QUERY_TASKS } from '../utils/queries';
+import { QUERY_USERS, QUERY_TASKS } from '../utils/queries';
 import Auth from '../utils/auth';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
@@ -21,11 +21,24 @@ const Taskboard = () => {
   // const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
   //   variables: { username: userParam }
   // });
-  // use useQuery hook to make query request
+
+  //Question:  use useQuery hook to make query request?? 
+  // const queryMultiple = () => {
+  //   const usersRes = useQuery(QUERY_USERS);
+  //   const tasksRes = useQuery(QUERY_TASKS);
+  //   return [usersRes, tasksRes]
+  // }
+  // const [
+  //   {loading: loadingUsers, data: dataUsers},
+  //   {loading: loadingTasks, data: dataTasks}
+  // ] = queryMultiple()
+
+  // const tasks = dataTasks?.tasks || [];
+
+  // const users = dataUsers?.users | [];
+
   const { loading, data } = useQuery(QUERY_TASKS);
   const tasks = data?.tasks || [];
-  
-
   const user = data?.me || data?.user || {};
 
 
@@ -33,6 +46,7 @@ const Taskboard = () => {
   // if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
   //   return <Redirect to="/homepage" />;
   // }
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -56,9 +70,8 @@ const Taskboard = () => {
         { loading ? (
           <div>Loading your Pod's tasks</div>
         ) : (
-          <TaskList tasks={data.tasks} title={`${user.username}'s tasks...`}/>
+          <TaskList tasks={tasks} title={`${user.username}'s tasks...`}/>
         )}
-        
           <br/>
         <TaskForm/>
       </Container>

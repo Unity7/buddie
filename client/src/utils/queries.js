@@ -50,6 +50,23 @@ export const QUERY_USER = gql`
   }
 `;
 
+export const QUERY_USERS = gql `
+  query {
+    users {
+      _id
+      username
+      first_name
+      last_name
+      email
+      tasks{
+        
+        taskText
+        taskStatus
+      }
+    }
+  }
+`;
+
 export const QUERY_ME = gql`
   {
     me {

@@ -1,12 +1,10 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { QUERY_TASKS, QUERY_ME_BASIC } from '../utils/queries';
-import ThoughtList from '../components/ThoughtList';
+import { QUERY_TASKS, QUERY_ME_BASIC, QUERY_MESSAGES } from '../utils/queries';
 import FriendList from '../components/FriendList';
 import TaskForm from '../components/TaskForm';
 import Auth from '../utils/auth';
 import MessageList from "../components/MessageList";
-import FriendList from "../components/FriendList";
 import MessageForm from "../components/MessageForm";
 
   
@@ -23,8 +21,7 @@ import Grid from "@material-ui/core/Grid";
 // import Container from "@material-ui/core/Container";
 
 const Home = () => {
-  // use useQuery hook to make query request
-  const { loading, data } = useQuery(QUERY_TASKS);
+
   // use useQuery hook to make query request
   const { loading, data } = useQuery(QUERY_MESSAGES);
   // use object destructuring to extract `data` from the `useQuery` Hook's response and rename it `userData` to be more descriptive
