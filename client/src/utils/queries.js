@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const QUERY_TASKS = gql`
   query {
@@ -15,16 +15,16 @@ export const QUERY_TASKS = gql`
 `;
 
 export const QUERY_TASK = gql`
-query task($_id: ID!){
-  task(_id: $_id) {
-    _id
-    username
-    assignedID
-    taskText
-    taskStatus
-    createdAt
+  query task($_id: ID!) {
+    task(_id: $_id) {
+      _id
+      username
+      assignedID
+      taskText
+      taskStatus
+      createdAt
+    }
   }
-}
 `;
 
 export const QUERY_USER = gql`
@@ -50,27 +50,26 @@ export const QUERY_USER = gql`
   }
 `;
 
-
 export const QUERY_ME = gql`
   {
     me {
-    _id
-    username
-    first_name
-    last_name
-    email
-    friendCount
-    tasks {
-      taskText
-      taskStatus
-      assignedID
-      createdAt
-    }
-    friends {
       _id
       username
+      first_name
+      last_name
+      email
+      friendCount
+      tasks {
+        taskText
+        taskStatus
+        assignedID
+        createdAt
+      }
+      friends {
+        _id
+        username
+      }
     }
-  }
   }
 `;
 
@@ -92,7 +91,7 @@ export const QUERY_ME_BASIC = gql`
   }
 `;
 
-// Delete Later 
+// Delete Later
 export const QUERY_THOUGHT = gql`
   query {
     tasks {
@@ -117,6 +116,35 @@ export const QUERY_THOUGHTS = gql`
       createdAt
       assignedID
       taskStatus
+    }
+  }
+`;
+
+export const QUERY_MESSAGES = gql`
+  query {
+    messages {
+      _id
+      username
+      messageText
+      createdAt
+    }
+  }
+`;
+
+export const QUERY_MESSAGE = gql`
+  query message($id: ID!) {
+    message(_id: $id) {
+      _id
+      messageText
+      createdAt
+      username
+      replyCount
+      replies {
+        _id
+        createdAt
+        username
+        replyBody
+      }
     }
   }
 `;
