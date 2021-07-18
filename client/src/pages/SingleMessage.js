@@ -26,7 +26,7 @@ const SingleMessage = (props) => {
           <span style={{ fontWeight: 700 }} className="text-light">
             {message.username}
           </span>{" "}
-          message on {message.createdAt}
+          posted on {message.createdAt}
         </p>
         <div className="card-body">
           <p>{message.messageText}</p>

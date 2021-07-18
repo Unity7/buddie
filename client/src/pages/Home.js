@@ -35,17 +35,18 @@ const Home = () => {
         </Grid>
         <Grid container item sm={6}>
           <div className="flex-row justify-space-between">
-            {loggedIn && (
-              <div className="col-12 mb-3">
-                <MessageForm />
-              </div>
-            )}
+            
             <div className={`col-12 mb-3 ${loggedIn && "col-lg-8"}`}>
               {loading ? (
                 <div>Loading...</div>
               ) : (
                 <MessageList messages={messages} title="Messages" />
               )}
+              {loggedIn && (
+              <div className="col-12 mb-3">
+                <MessageForm />
+              </div>
+            )}
               {loggedIn && userData ? (
                 <div className="col-12 col-lg-3 mb-3">
                   <FriendList
