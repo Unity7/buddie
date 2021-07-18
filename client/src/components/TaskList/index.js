@@ -14,15 +14,12 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import { Button } from '@material-ui/core';
-
+ // -----------------------------  task list styles ----------------------------- //
 
 import { useMutation } from '@apollo/client';
 
-
-
-
+// -----------------------------  task list styles ----------------------------- //
 const useStyles = makeStyles((theme) => ({
-  // -----------------------------  task list styles ----------------------------- //
   root: {
     flexGrow: 1,
     display: 'flex',
@@ -67,9 +64,10 @@ const useStyles = makeStyles((theme) => ({
   statusBtn: {
 
   }
-  // -----------------------------  task list styles ----------------------------- //
+  
 }));
 
+// -----------------------------  task list styles ----------------------------- //
 const TaskList = ({ tasks }) => {
   const classes = useStyles();
   
