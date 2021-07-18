@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState }  from "react";
 // reacter router dom
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import {
@@ -42,6 +42,8 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
+
+
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
@@ -62,6 +64,9 @@ const client = new ApolloClient({
 // After we create the link, we use the ApolloClient() constructor to instantiate the Apollo Client instance and create the connection to the API endpoint. We also instantiate a new cache object using new InMemoryCache().
 
 function App() {
+  
+
+
   return (
     <ApolloProvider client={client}>
       <Router>

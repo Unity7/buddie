@@ -73,43 +73,40 @@ const TaskList = ({ tasks }) => {
   //   return <h3>No Tasks Yet</h3>;
   // }
 
+
+  // -------------------------- Set State ------------------------- //
+  // set current state with current taskList object
+  const [state, setTaskList] = useState(...tasks);
+
   // ----------------------- Updating Tasks ----------------------- //
   // set state to track changes in status the inital value = false 
   const [status, setStatus] = useState(false)
 
-  // const [updateTask, {error}] = useMutation(UPDATE_TASK, {})
+// -------------------------- status button click ---------------------- //
   const handleStatus = event => {
 
     const currentStatus = event.target.value
     console.log(`
     =====================
+    Status Button Cliked
+    =====================
     Status ${currentStatus}
     =====================
-    
     `)
-    // if the value of the task's state is false 
-    if(currentStatus === false) {
-      //set new state to true
-      const newStatus = setStatus(true)
-        console.log(`
-      =====================
-      New Status ${newStatus}
-      =====================
-      
-      `)
-    } // else set to false  
   }
 // ------------------------------- Deleting Task ---------------------------------------- //
-// set current state with current taskList object
-const [state, setTaskList] = useState(...tasks);
-
 
 const deleteTask = ({_id}) => {
   // update state and create new task list without deleted task
-  let newTaskList = state.filter( task => !_id );
-};
+  console.log(`
+    =====================
+    Delete Button Cliked
+    =====================
+    Delete Button Cliked
+    =====================
+    `)
 
-
+};  
 
   return (
     <div>
