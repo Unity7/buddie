@@ -26,9 +26,9 @@ const Header = () => {
           {Auth.loggedIn() ? (
             <>
               {/* if logged in go to dashboard? */}
-              <Link to="/profile">Me</Link>
+              <Link to="/profile">MY PROFILE</Link>
               <a href="/" onClick={logout}>
-                Logout
+                LOGOUT
               </a>
             </>
           ) : (
