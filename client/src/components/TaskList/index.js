@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import { UPDATE_TASK, DELETE_TASK } from '../../utils/mutations';
+import Toggler from '../Toggler';
 
 // -----------------------------  task list styles ----------------------------- //
 import { makeStyles } from '@material-ui/core/styles';
@@ -43,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 // -----------------------------  task list styles ----------------------------- //
-const TaskList = ({ incomingTasks, title }) => {
+const TaskList = ({ tasks, username }) => {
   const classes = useStyles();
   // if (!taskListState.length) {
   //   return <h3>No Tasks Yet</h3>;
@@ -54,7 +55,7 @@ const TaskList = ({ incomingTasks, title }) => {
 
   // ----------------------- Updating taskListState ----------------------- //
 
-   const [taskListState, setTaskList] = useState(incomingTasks);
+  //  const [taskListState, setTaskList] = useState(incomingTasks);
   
   //  useEffect (() => {
   //    useMutation
@@ -64,28 +65,6 @@ const TaskList = ({ incomingTasks, title }) => {
   //   },[taskListState])
 
 
-  // set state to track changes in status the inital value = false 
-  const [status, setStatus] = useState(false)
-
-  console.log(`
-    =====================
-    State
-    =====================
-    State 
-    =====================
-    `)
-// -------------------------- status button click ---------------------- //
-  const handleStatus = event => {
-
-    const currentStatus = event.target.value
-    console.log(`
-    =====================
-    Status Button Cliked
-    =====================
-    Status ${currentStatus}
-    =====================
-    `)
-  }
 // ------------------------------- Deleting Task ---------------------------------------- //
 
 const DeleteTask = ({_id}) => {
@@ -97,9 +76,8 @@ const DeleteTask = ({_id}) => {
     task id 
     =====================
     `)
-    // use setTaskList
-    setTaskList([])
-
+    
+   
 };  
 
   return (
@@ -124,8 +102,8 @@ const DeleteTask = ({_id}) => {
                 </Grid>
           </Grid>
         </Grid >
-      { taskListState &&
-        taskListState.map(task => (
+      { tasks &&
+        tasks.map(task => (
           <div className={classes.root}>
             <Grid key={task._id} className={classes.paper}>
               <Grid item sm={12} container>
@@ -138,14 +116,7 @@ const DeleteTask = ({_id}) => {
                   <Typography>{task.taskText}</Typography>
                 </Grid>
                 <Grid item sm={1} className="taskItem">
-
-                    {!taskListState.taskStatus ? (
-                      // <Button value={task.taskStatus} onClick={handleStatus}>TODO</Button>
-                     <button className="statusBtn todo" value={status} onClick={handleStatus}>TODO</button>
-                    ) : (
-                      <button className="statusBtn done" value={status} onClick={handleStatus}>DONE</button>
-                    )}
-          
+                  <Toggler/>
                 </Grid>
                 <Grid item sm={1} className="taskItem">
                   <Select
@@ -157,9 +128,9 @@ const DeleteTask = ({_id}) => {
                     <MenuItem value="">
                       <em>Choose User</em>
                     </MenuItem>
-                    <MenuItem value={10}>User</MenuItem>
-                    <MenuItem value={20}>User</MenuItem>
-                    <MenuItem value={30}>User</MenuItem>
+                    <MenuItem>User</MenuItem>
+                    <MenuItem>User</MenuItem>
+                    <MenuItem>User</MenuItem>
                   </Select>
                 </Grid>
                 <Grid item sm={1} className="taskItem">

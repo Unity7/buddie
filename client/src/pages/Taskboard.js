@@ -41,7 +41,7 @@ const Taskboard = () => {
 
   
   const { loading, data } = useQuery(QUERY_TASKS);
-  const taskListState = data?.tasks || [];
+  const tasks = data?.tasks || [];
   const user = data?.me || data?.user || {};
 
   // const [taskListState, setTaskList] = useState([]);
@@ -78,7 +78,7 @@ const Taskboard = () => {
         { loading ? (
           <div>Loading your Pod's tasks</div>
         ) : (
-          <TaskList taskListState={taskListState} title={`${user.username}'s tasks...`}/>
+          <TaskList tasks={tasks} username={`${user.username}'s tasks...`}/>
         )}
           <br/>
         <TaskForm/>
