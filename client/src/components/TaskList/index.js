@@ -43,21 +43,37 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 // -----------------------------  task list styles ----------------------------- //
-const TaskList = ({ tasks }) => {
+const TaskList = ({ incomingTasks, title }) => {
   const classes = useStyles();
-  // if (!tasks.length) {
+  // if (!taskListState.length) {
   //   return <h3>No Tasks Yet</h3>;
   // }
 
 
-  // -------------------------- Set State ------------------------- //
-  // set current state with current taskList object
-  const [state, setTaskList] = useState(...tasks);
+ 
 
-  // ----------------------- Updating Tasks ----------------------- //
+  // ----------------------- Updating taskListState ----------------------- //
+
+   const [taskListState, setTaskList] = useState(incomingTasks);
+  
+  //  useEffect (() => {
+  //    useMutation
+  //   setTaskList(...tasks)
+    
+
+  //   },[taskListState])
+
+
   // set state to track changes in status the inital value = false 
   const [status, setStatus] = useState(false)
 
+  console.log(`
+    =====================
+    State
+    =====================
+    State 
+    =====================
+    `)
 // -------------------------- status button click ---------------------- //
   const handleStatus = event => {
 
@@ -78,12 +94,11 @@ const DeleteTask = ({_id}) => {
     =====================
     Delete Button Cliked
     =====================
-    Delete Button Cliked
+    task id 
     =====================
     `)
-    // useEffect (() => {
-
-    // },[])
+    // use setTaskList
+    setTaskList([])
 
 };  
 
@@ -109,8 +124,8 @@ const DeleteTask = ({_id}) => {
                 </Grid>
           </Grid>
         </Grid >
-      { tasks &&
-        tasks.map(task => (
+      { taskListState &&
+        taskListState.map(task => (
           <div className={classes.root}>
             <Grid key={task._id} className={classes.paper}>
               <Grid item sm={12} container>
@@ -124,7 +139,7 @@ const DeleteTask = ({_id}) => {
                 </Grid>
                 <Grid item sm={1} className="taskItem">
 
-                    {!task.taskStatus ? (
+                    {!taskListState.taskStatus ? (
                       // <Button value={task.taskStatus} onClick={handleStatus}>TODO</Button>
                      <button className="statusBtn todo" value={status} onClick={handleStatus}>TODO</button>
                     ) : (

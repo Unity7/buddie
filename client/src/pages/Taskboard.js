@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Redirect, useParams } from 'react-router-dom';
 import TaskList from '../components/TaskList';
 import TaskForm from '../components/TaskForm';
@@ -12,7 +12,9 @@ import Container from '@material-ui/core/Container';
 
 
 const Taskboard = () => {
-  
+  // -------------------------- Set State ------------------------- //
+  // set current state with current taskList object
+
   
   const [addFriend] = useMutation(ADD_FRIEND);
 
@@ -37,9 +39,18 @@ const Taskboard = () => {
 
   // const users = dataUsers?.users | [];
 
+  
   const { loading, data } = useQuery(QUERY_TASKS);
-  const tasks = data?.tasks || [];
+  const taskListState = data?.tasks || [];
   const user = data?.me || data?.user || {};
+
+  // const [taskListState, setTaskList] = useState([]);
+  
+  // useEffect (() => {
+  //   setTaskList(...tasks)
+    
+
+  //   },[taskListState])
 
   // redirect to personal profile page if username is the logged-in user's
   // if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
@@ -67,7 +78,7 @@ const Taskboard = () => {
         { loading ? (
           <div>Loading your Pod's tasks</div>
         ) : (
-          <TaskList tasks={tasks} title={`${user.username}'s tasks...`}/>
+          <TaskList taskListState={taskListState} title={`${user.username}'s tasks...`}/>
         )}
           <br/>
         <TaskForm/>

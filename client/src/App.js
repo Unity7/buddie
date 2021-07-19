@@ -64,8 +64,8 @@ const client = new ApolloClient({
 // After we create the link, we use the ApolloClient() constructor to instantiate the Apollo Client instance and create the connection to the API endpoint. We also instantiate a new cache object using new InMemoryCache().
 
 function App() {
-
-
+  
+  
   return (
     <ApolloProvider client={client}>
       <Router>
