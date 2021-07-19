@@ -38,32 +38,8 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
     margin: 'auto',
-    width: 900,
-    maxWidth: 1000,
-  },
-  icon: {
-    width: 128,
-    height: 128,
-    borderRadius: 30,
-    margin: 'auto',
-    display: 'block',
-    maxWidth: '100%',
-    maxHeight: '100%',
-  },
-  taskItem: {
-    height: 128,
-    margin: 'auto',
-    display: 'block',
-    maxWidth: '100%',
-    maxHeight: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-  },
-  statusBtn: {
-
+    width: '85vw',
   }
-  
 }));
 
 // -----------------------------  task list styles ----------------------------- //
@@ -96,7 +72,7 @@ const TaskList = ({ tasks }) => {
   }
 // ------------------------------- Deleting Task ---------------------------------------- //
 
-const deleteTask = ({_id}) => {
+const DeleteTask = ({_id}) => {
   // update state and create new task list without deleted task
   console.log(`
     =====================
@@ -105,36 +81,58 @@ const deleteTask = ({_id}) => {
     Delete Button Cliked
     =====================
     `)
+    // useEffect (() => {
+
+    // },[])
 
 };  
 
   return (
     <div>
+      <Grid id="taskListContainer" container>
+       <Grid item container >
+         <Grid item container id="taskListHeader">
+                <Grid item sm={1} className="headerItem">
+                  <h4>Owner</h4>
+                </Grid>
+                <Grid item sm={7} className="headerItem">
+                  <h4>Task</h4>
+                </Grid>
+                <Grid item sm={1} className="headerItem">
+                  <h4>Status</h4>
+                </Grid>
+                <Grid item sm={1} className="headerItem">
+                      <h4>Assign</h4>
+                </Grid>
+                <Grid item sm={1} className="headerItem">
+                  <h4>Delete</h4>
+                </Grid>
+          </Grid>
+        </Grid >
       { tasks &&
         tasks.map(task => (
           <div className={classes.root}>
-            <Paper key={task._id} className={classes.paper}>
-              <Grid item xs={12} container>
-                <Grid item>
-                  <ButtonBase className={classes.icon}>
+            <Grid key={task._id} className={classes.paper}>
+              <Grid item sm={12} container>
+                <Grid sm={1} item className="taskItem">
+                  <ButtonBase >
                     <div>CL</div>
                   </ButtonBase>
                 </Grid>
-                <Grid item className={classes.taskItem}>
+                <Grid item sm={7} className="taskItem">
                   <Typography>{task.taskText}</Typography>
                 </Grid>
-                <Grid item className={classes.taskItem}>
-                  <ButtonBase>
+                <Grid item sm={1} className="taskItem">
+
                     {!task.taskStatus ? (
                       // <Button value={task.taskStatus} onClick={handleStatus}>TODO</Button>
-                     <button value={status} onClick={handleStatus}>TODO</button>
+                     <button className="statusBtn todo" value={status} onClick={handleStatus}>TODO</button>
                     ) : (
-                      <button value={status} onClick={handleStatus}>DONE</button>
+                      <button className="statusBtn done" value={status} onClick={handleStatus}>DONE</button>
                     )}
-                  </ButtonBase>
+          
                 </Grid>
-                <Grid item className={classes.taskItem}>
-                  <InputLabel id="demo-customized-select-label">Assigned To:</InputLabel>
+                <Grid item sm={1} className="taskItem">
                   <Select
                     labelId="demo-customized-select-label"
                     id="demo-customized-select"
@@ -149,15 +147,16 @@ const deleteTask = ({_id}) => {
                     <MenuItem value={30}>User</MenuItem>
                   </Select>
                 </Grid>
-                <Grid item className={classes.taskItem}>
-                    <Fab color="secondary" aria-label="delete" value={task._id} onClick={deleteTask}>
+                <Grid item sm={1} className="taskItem">
+                    <Fab color="secondary" aria-label="delete" value={task._id} onClick={DeleteTask}>
                       <DeleteIcon />
                     </Fab>
                 </Grid>
               </Grid>
-            </Paper>
+            </Grid>
           </div>
         ))}
+        </Grid>
     </div>
   );
 };

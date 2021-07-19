@@ -41,7 +41,6 @@ const Taskboard = () => {
   const tasks = data?.tasks || [];
   const user = data?.me || data?.user || {};
 
-
   // redirect to personal profile page if username is the logged-in user's
   // if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
   //   return <Redirect to="/homepage" />;
@@ -50,7 +49,6 @@ const Taskboard = () => {
   if (loading) {
     return <div>Loading...</div>;
   }
-
   // Question: why isn't this seeing that I'm logged in?
   // if (!user?.username) {
   //   return (
@@ -59,7 +57,6 @@ const Taskboard = () => {
   //     </h4>
   //   );
   // }
-
 
   return (
     <div>
