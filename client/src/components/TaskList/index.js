@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import { UPDATE_TASK, DELETE_TASK } from '../../utils/mutations';
 import Toggler from '../Toggler';
-
+import AssignMenu from '../AssignMenu';
 // -----------------------------  task list styles ----------------------------- //
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -119,7 +119,8 @@ const DeleteTask = ({_id}) => {
                   <Toggler/>
                 </Grid>
                 <Grid item sm={1} className="taskItem">
-                  <Select
+                  <AssignMenu/>
+                  {/* <Select
                     labelId="demo-customized-select-label"
                     id="demo-customized-select"
                     onChange={'click'}
@@ -131,7 +132,7 @@ const DeleteTask = ({_id}) => {
                     <MenuItem>User</MenuItem>
                     <MenuItem>User</MenuItem>
                     <MenuItem>User</MenuItem>
-                  </Select>
+                  </Select> */}
                 </Grid>
                 <Grid item sm={1} className="taskItem">
                     <Fab color="secondary" aria-label="delete" value={task._id} onClick={DeleteTask}>
