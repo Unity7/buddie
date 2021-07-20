@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import { Link } from 'react-router-dom';
 import { UPDATE_TASK, DELETE_TASK } from '../../utils/mutations';
 import Toggler from '../Toggler';
 import AssignMenu from '../AssignMenu';
@@ -12,11 +11,11 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 import Fab from '@material-ui/core/Fab';
 import DeleteIcon from '@material-ui/icons/Delete';
 import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
+
  // -----------------------------  task list styles ----------------------------- //
 
 import { useMutation } from '@apollo/client';
+import DeleteButton from '../DeleteButton';
 
 // -----------------------------  task list styles ----------------------------- //
 const useStyles = makeStyles((theme) => ({
@@ -44,17 +43,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 // -----------------------------  task list styles ----------------------------- //
-const TaskList = ({ tasks, username }) => {
+const TaskList = ({ tasks, username, setShouldUpdate }) => {
   const classes = useStyles();
   // if (!taskListState.length) {
   //   return <h3>No Tasks Yet</h3>;
   // }
 
-
- 
-
   // ----------------------- Updating taskListState ----------------------- //
-
   //  const [taskListState, setTaskList] = useState(incomingTasks);
   
   //  useEffect (() => {
@@ -66,19 +61,21 @@ const TaskList = ({ tasks, username }) => {
 
 
 // ------------------------------- Deleting Task ---------------------------------------- //
+  // [deleteTask] = useMutation(DELETE_TASK)
 
-const DeleteTask = ({_id}) => {
-  // update state and create new task list without deleted task
-  console.log(`
-    =====================
-    Delete Button Cliked
-    =====================
-    task id 
-    =====================
-    `)
+// async function DeleteTask(e) {
+//   // update state and create new task list without deleted task
+//   const taskID = e.target.value
+//   await  taskID
+//   console.log(`
+//     =====================
+//     Delete Button Cliked
+//     =====================
+//     task id ${ taskID}
+//     =====================
+//     `)
     
-   
-};  
+// };  
 
   return (
     <div>
@@ -120,24 +117,13 @@ const DeleteTask = ({_id}) => {
                 </Grid>
                 <Grid item sm={1} className="taskItem">
                   <AssignMenu/>
-                  {/* <Select
-                    labelId="demo-customized-select-label"
-                    id="demo-customized-select"
-                    onChange={'click'}
-                    className={classes.input}
-                  >
-                    <MenuItem value="">
-                      <em>Choose User</em>
-                    </MenuItem>
-                    <MenuItem>User</MenuItem>
-                    <MenuItem>User</MenuItem>
-                    <MenuItem>User</MenuItem>
-                  </Select> */}
+
                 </Grid>
                 <Grid item sm={1} className="taskItem">
-                    <Fab color="secondary" aria-label="delete" value={task._id} onClick={DeleteTask}>
-                      <DeleteIcon />
-                    </Fab>
+                  <DeleteButton task={task} setShouldUpdate={setShouldUpdate}/>
+                    {/* <Fab color="secondary" aria-label="delete">
+                      <DeleteIcon value={task._id} onClick={() => deleteTask({variables: {id:task._id}})}/>
+                    </Fab> */}
                 </Grid>
               </Grid>
             </Grid>

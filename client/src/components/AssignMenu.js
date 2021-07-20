@@ -54,7 +54,8 @@ const AssignMenu = () => {
     // this wont work until I can figure out how to get the taskID
     // useEffect(() => {
     //     async function updateState() {
-    //         const response = await updateState(assign)
+        // how do I pass in taskID and status?
+    //         const response = await updateState()
     //         console.log(`
     //             =====================
     //             OnChange Assigned To
@@ -63,6 +64,7 @@ const AssignMenu = () => {
     //             =====================
     //             `)
     //     }
+    //    updateState()
     // }, [assign]);
 
     return (
