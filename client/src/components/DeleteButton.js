@@ -4,28 +4,26 @@ import { DELETE_TASK } from '../utils/mutations';
 import Fab from '@material-ui/core/Fab';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { QUERY_TASKS } from '../utils/queries';
-const DeleteButton = ({task, setShouldUpdate}) => {
-    // ----------- set state for task's status the task --------- //
 
+
+const DeleteButton = ({task, setShouldUpdate}) => {
 
     // --------- definie mutation to update status to in gql ---------- //
     const [deleteTask] = useMutation(DELETE_TASK, {
-        // ----------- 1st option update cache
-        // cashe.read read the info from tasksquery 
+        // ------------- 1st option update cache this would be better for performance but cache is not reading _id for an unknown reason
+        // Note: cashe.read read the info from tasksquery 
         // update: (cache, {data}) => {
         //     console.log(cache)
         //     cache.readQuery({query: QUERY_TASKS})
         //     // console.log(tasks)
         // },
+        // Note: update returned array with new array
+        // Note: write the new array into cache
+
+         // ----------------- 2nd option 
         onCompleted: () => {
-            console.log('hello')
             setShouldUpdate(true)
         }
-        // update returned array with new array 
-
-        // write the new array into cache
-
-        // ----------- 2nd option
     })
 
     // ---------------------- handle onClick ---------------------- //
@@ -33,6 +31,7 @@ const DeleteButton = ({task, setShouldUpdate}) => {
         console.log(variables)
         // update state and create new task list without deleted task
         const {id} = variables
+        
         console.log(`
         =====================
         Delete Button Cliked
@@ -40,13 +39,12 @@ const DeleteButton = ({task, setShouldUpdate}) => {
         task id ${id}
         =====================
         `)
-        deleteTask({variables:{_id: id}});
+        // ---------------------- Update back end ---------------------- //
+        deleteTask({variables: {_id: id}});
     }
 
-    // async function DeleteTask(variables) {
-        
-    // }
-    // ---------------------- Update back end ---------------------- //
+
+    
 
     return (
 

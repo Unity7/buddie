@@ -1,41 +1,66 @@
 import { useMutation } from '@apollo/client';
+import { update } from 'lodash';
 import React, { useEffect, useState } from 'react';
 import { UPDATE_TASK } from '../utils/mutations';
 
-const Toggler = () => {
+const Toggler = ({ task, setShouldUpdate }) => {
     // ----------- set state for task's status the task --------- //
-    const [status, setStatus] = useState(false)
+    // const [status, setStatus] = useState('')
 
     // --------- definie mutation to update status to in gql ---------- //
-    const [updateState] = useMutation(UPDATE_TASK)
+    const [updateState] = useMutation(UPDATE_TASK, {
+        onCompleted: () => {
+            setShouldUpdate(true)
+        }
+    })
 
     // ---------------------- handle onClick ---------------------- //
-    const ToggleStatus = () => {
-        // change state to opposite of what it was
-        setStatus(!status)
+    const toggleStatus = (variables) => {
+        // test variables are passed correctly 
+        console.log(
+            ` 
+            =====================
+            Variables
+            =====================
+            ${variables}
+            =====================
+        `)
+        // test task id is available
+        console.log(
+            ` 
+            =====================
+            Task's ID
+            =====================
+            ${task._id}
+            =====================
+        `)
+
+
+
+        // change status to opposite of what it was
+        const newStatus = !variables.taskStatus
+        console.log(newStatus)
+        
+        // ---------------------- Update back end ---------------------- //
+        updateState({ variables: { taskStatus: newStatus, _id: task._id } })
+
+        // check that task status is changed
+        console.log(
+            ` 
+          =====================
+          Current Task Status
+          =====================
+          ${task.taskStatus}
+          =====================
+          `)
     }
 
     // ---------------------- Update back end ---------------------- //
 
-    // useEffect(() => {
-    // // this wont work until I can figure out how to get the taskID
-    //     async function updateState() {
-    //         // how do I pass in taskID and status?
-    //         const response = await updateState()
-    //         console.log(`
-    //             =====================
-    //             OnChange Assigned To
-    //             =====================
-    //             Assigned To ${status}
-    //             =====================
-    //             `)
-    //     }
-    //     updateState()
-    // }, [status]);
 
     return (
-        <button className="statusBtn" value={status} onClick={ToggleStatus}>
-            {status ? "👍🏼" : "👎🏼"}
+        <button className="statusBtn" onClick={() => toggleStatus({ taskStatus: task.taskStatus })}>
+            {task.taskStatus ? "👍🏼" : "👎🏼"}
         </button>
     )
 }

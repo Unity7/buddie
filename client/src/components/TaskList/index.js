@@ -8,9 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
-import Fab from '@material-ui/core/Fab';
-import DeleteIcon from '@material-ui/icons/Delete';
-import InputLabel from '@material-ui/core/InputLabel';
+
 
  // -----------------------------  task list styles ----------------------------- //
 
@@ -45,37 +43,9 @@ const useStyles = makeStyles((theme) => ({
 // -----------------------------  task list styles ----------------------------- //
 const TaskList = ({ tasks, username, setShouldUpdate }) => {
   const classes = useStyles();
-  // if (!taskListState.length) {
+  // if (!tasks.length) {
   //   return <h3>No Tasks Yet</h3>;
   // }
-
-  // ----------------------- Updating taskListState ----------------------- //
-  //  const [taskListState, setTaskList] = useState(incomingTasks);
-  
-  //  useEffect (() => {
-  //    useMutation
-  //   setTaskList(...tasks)
-    
-
-  //   },[taskListState])
-
-
-// ------------------------------- Deleting Task ---------------------------------------- //
-  // [deleteTask] = useMutation(DELETE_TASK)
-
-// async function DeleteTask(e) {
-//   // update state and create new task list without deleted task
-//   const taskID = e.target.value
-//   await  taskID
-//   console.log(`
-//     =====================
-//     Delete Button Cliked
-//     =====================
-//     task id ${ taskID}
-//     =====================
-//     `)
-    
-// };  
 
   return (
     <div>
@@ -113,17 +83,14 @@ const TaskList = ({ tasks, username, setShouldUpdate }) => {
                   <Typography>{task.taskText}</Typography>
                 </Grid>
                 <Grid item sm={1} className="taskItem">
-                  <Toggler/>
+                  <Toggler task={task} setShouldUpdate={setShouldUpdate}/>
                 </Grid>
                 <Grid item sm={1} className="taskItem">
-                  <AssignMenu/>
+                  <AssignMenu task={task} setShouldUpdate={setShouldUpdate}/>
 
                 </Grid>
                 <Grid item sm={1} className="taskItem">
                   <DeleteButton task={task} setShouldUpdate={setShouldUpdate}/>
-                    {/* <Fab color="secondary" aria-label="delete">
-                      <DeleteIcon value={task._id} onClick={() => deleteTask({variables: {id:task._id}})}/>
-                    </Fab> */}
                 </Grid>
               </Grid>
             </Grid>

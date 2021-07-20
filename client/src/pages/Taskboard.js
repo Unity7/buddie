@@ -13,23 +13,25 @@ import Container from '@material-ui/core/Container';
 
 const Taskboard = () => {
   // -------------------------- Set State ------------------------- //
-  // set current state with current taskList object
+
+  // set state to use later in useEffect to tell it to rerender
   const [shouldUpdate, setShouldUpdate] = useState(false)
 
-  const [addFriend] = useMutation(ADD_FRIEND);
 
   const { username: userParam } = useParams();
 
-
-
-  // const users = dataUsers?.users | [];
+  // query for tasks
   const[getAllTasks, { called, loading, data}] = useLazyQuery(
     QUERY_TASKS,
+    // skip cached data because its annoying 
     {fetchPolicy: "no-cache"}
-    
   )
+
+  // setting up useEffect that will be passed down as props to be used in other components 
   useEffect(() => {
+    // when we rerender get tasks again 
     getAllTasks()
+    // reset state back to false 
     setShouldUpdate(false)
   }, [shouldUpdate])
 
@@ -38,11 +40,10 @@ const Taskboard = () => {
   const tasks = data?.tasks || [];
   const user = data?.me || data?.user || {};
 
-
-
   if (loading) {
     return <div>Loading...</div>;
   }
+
   // Question: why isn't this seeing that I'm logged in?
   // if (!user?.username) {
   //   return (
