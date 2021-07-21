@@ -1,9 +1,8 @@
 import { useMutation } from '@apollo/client';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { DELETE_TASK } from '../utils/mutations';
-import Fab from '@material-ui/core/Fab';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { QUERY_TASKS } from '../utils/queries';
+
 
 
 const DeleteButton = ({task, setShouldUpdate}) => {
@@ -29,9 +28,9 @@ const DeleteButton = ({task, setShouldUpdate}) => {
     // ---------------------- handle onClick ---------------------- //
     const handleClick = (variables) => {
         console.log(variables)
-        // update state and create new task list without deleted task
+    
         const {id} = variables
-        
+
         console.log(`
         =====================
         Delete Button Cliked

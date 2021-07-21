@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import { UPDATE_TASK, DELETE_TASK } from '../../utils/mutations';
 import Toggler from '../Toggler';
 import AssignMenu from '../AssignMenu';
 // -----------------------------  task list styles ----------------------------- //
@@ -24,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  
   input: {
     borderRadius: 4,
     backgroundColor: theme.palette.background.paper,

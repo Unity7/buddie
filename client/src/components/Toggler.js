@@ -35,11 +35,8 @@ const Toggler = ({ task, setShouldUpdate }) => {
             =====================
         `)
 
-
-
         // change status to opposite of what it was
         const newStatus = !variables.taskStatus
-        console.log(newStatus)
         
         // ---------------------- Update back end ---------------------- //
         updateState({ variables: { taskStatus: newStatus, _id: task._id } })

@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { ADD_TASK } from '../../utils/mutations';
 // because tasks are contained in a array we are going to use the query below to update the cache and return new tasks submitted in the form, QUERY_ME is being used on the profile page instead of Query taskS so we need to have both
-import { QUERY_TASKS, QUERY_ME } from '../../utils/queries';
+import { QUERY_TASKS } from '../../utils/queries';
 import ReactDOM from 'react-dom';
 import Button from '@material-ui/core/Button';
 
-const TaskForm = () => {
+const TaskForm = ({tasks, setShouldUpdate}) => {
     const [taskText, setText] = useState('');
     const [characterCount, setCharacterCount] = useState(0);
 
@@ -24,13 +24,9 @@ const TaskForm = () => {
             } catch(e) {
                 console.log(e)
             }
-            
-            // update me object's cache, appending new task to the end of the array
-            const { me } = cache.readQuery({ query: QUERY_ME });
-            cache.writeQuery({
-            query: QUERY_ME,
-            data: { me: { ...me, tasks: [...me.tasks, addtask] } }
-            });
+            },
+        onCompleted: () => {
+            setShouldUpdate(true)
         }
     });
 

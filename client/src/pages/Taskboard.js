@@ -65,7 +65,7 @@ const Taskboard = () => {
           <TaskList setShouldUpdate={setShouldUpdate} tasks={tasks} username={`${user.username}'s tasks...`}/>
         )}
           <br/>
-        <TaskForm/>
+        <TaskForm setShouldUpdate={setShouldUpdate} tasks={tasks}/>
       </Container>
     </div> 
   );
