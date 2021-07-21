@@ -1,6 +1,7 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
-import { QUERY_TASKS, QUERY_ME_BASIC, QUERY_MESSAGES } from "../utils/queries";
+import { QUERY_ME_BASIC, QUERY_MESSAGES } from "../utils/queries"; 
+// add QUERY_TASKS to this import
 import FriendList from "../components/FriendList";
 // import TaskForm from '../components/TaskForm';
 import Auth from "../utils/auth";
@@ -31,32 +32,41 @@ const Home = () => {
 
   return (
     <main>
-      <Grid direction="row" container spacing={6}>
-        <Grid container item sm={6}>
-          <div className="flex-row justify-space-between compBorders">
-            Place Holder, This section is for the my task
+      <Grid direction="row" container spacing={2}>
+      {/* <h2 className="heading">My Tasks</h2> */}
+        {/* <Grid container item sm={6}original-grid-below > */}
+        <Grid  item sm={6} >
+        <h2 className="heading">My Tasks</h2>
+        {/* <div className="flex-row justify-space-between " > */}
+          <div className="flex-row compBorders scroller" >
+         
+        
+        
           </div>
+          
+          
         </Grid>
-        <Grid container item sm={6}>
-          <div className="flex-row justify-space-between">
-            <div
-              className={`col-12 mb-3 compBorders ${loggedIn && "col-lg-8"}`}
-            >
+        {/* <Grid container item sm={6} > */}
+        <Grid item sm={6} >
+          {/* <div className="flex-row justify-space-between "> */}
+          <div className=" ">
+            {/* <div className={`col-12  ${loggedIn && "col-lg-8"}`}> */}
+            <h2 className="heading">Messages</h2>
+            <div className={` ${loggedIn }`}>
               {loading ? (
                 <div>Loading...</div>
               ) : (
-                <div>
-                  <h2>Messages</h2>
+                <div className="compBorders scroller">
                   <MessageList messages={messages} />
                 </div>
               )}
               {loggedIn && (
-                <div className="col-12 mb-3">
+                <div className="col-12 mb-3" >
                   <MessageForm />
                 </div>
               )}
               {loggedIn && userData ? (
-                <div className="col-12 col-lg-3 mb-3">
+                <div className="col-lg-3 mb-3">
                   <FriendList
                     username={userData.me.username}
                     friendCount={userData.me.friendCount}

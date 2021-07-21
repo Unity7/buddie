@@ -21,6 +21,7 @@
 html,
 body {
   min-height: 100%;
+  /* overflow: hidden; */
 }
 
 body {
@@ -60,9 +61,6 @@ h1 {
   font-size: 2.25rem;
 }
 
-h2 {
-  font-size: 2rem;
-}
 
 h3 {
   font-size: 1.75rem;
@@ -120,6 +118,16 @@ nav a:hover {
   background-image: linear-gradient(
     180deg
     , #ffe48b 50%, #FAD02C 85%);
+}
+
+.navFont {
+/* font-family: 'Passion One', cursive;  */
+/* font-family: 'Poiret One', cursive; */
+/* font-family: 'PT Sans Narrow', sans-serif; */
+/* font-family: 'Quicksand', sans-serif; */
+font-family: 'Thasadith', sans-serif;
+/* font-family: 'Truculenta', sans-serif; */
+
 }
 
 .page-title {
@@ -215,8 +223,43 @@ nav a:hover {
 .compBorders {
   border-radius: 22px;
   background-color: #f3cb2e;
-  width: auto;
-  height: auto;
+  width: 540px;
+  max-width:540px; 
+  height: 600px;
+  max-height:600px;
+  box-shadow: rgba(0, 0, 0, 0.1) 3px 5px 7px, rgba(0, 0, 0, 0.1) 3px 9px 18px;
+  margin-top: 10px;
+  padding-left: 15px;
+  padding-top: 26px;
+  font-size: 15px;
+  /* font-family: 'Passion One', cursive;  */
+/* font-family: 'Poiret One', cursive; */
+/* font-family: 'PT Sans Narrow', sans-serif; */
+font-family: 'Quicksand', sans-serif;
+/* font-family: 'Thasadith', sans-serif; */
+/* font-family: 'Truculenta', sans-serif; */
+}
+
+.nameStyle{
+  font-family: 'PT Sans Narrow', sans-serif;
+  color: green;
+  font-size: 16px;
+}
+
+.chatStyle{
+  color: darkblue;
+  font-size: 15px;
+  font-family: 'Thasadith', sans-serif;
+}
+
+.scroller {
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
+  overflow-y: scroll; 
+}
+
+.scroller::-webkit-scrollbar {
+  display: none; 
 }
 /* ------------------------------------------- Taskboard Styles --------------------------------------- */
 /* linear-gradient(92deg, #f3cb2e, #ecb252, #f57972); */
@@ -335,59 +378,6 @@ nav a:hover {
   border-radius: var(--border-radius);
 }
 
-[type="radio"]:checked,
-[type="radio"]:not(:checked) {
-  position: absolute;
-  left: -9999px;
-}
-[type="radio"]:checked + label,
-[type="radio"]:not(:checked) + label {
-  position: relative;
-  padding-left: 25px;
-  cursor: pointer;
-  line-height: 20px;
-  display: inline-block;
-  color: var(--secondary);
-  margin-right: 0.2rem;
-}
-
-[type="radio"]:checked + label:before,
-[type="radio"]:not(:checked) + label:before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 18px;
-  height: 18px;
-  border: 2px solid var(--secondary);
-  border-radius: 100%;
-  background: #fff;
-}
-[type="radio"]:checked + label:after,
-[type="radio"]:not(:checked) + label:after {
-  content: "";
-  width: 12px;
-  height: 12px;
-  background-color: var(--secondary);
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  border-radius: 100%;
-  -webkit-transition: all 0.2s ease;
-  transition: all 0.2s ease;
-}
-
-[type="radio"]:not(:checked) + label:after {
-  opacity: 0;
-  -webkit-transform: scale(0);
-  transform: scale(0);
-}
-
-[type="radio"]:checked + label:after {
-  opacity: 1;
-  -webkit-transform: scale(1);
-  transform: scale(1);
-}
 
 /* LAYOUT */
 .container {
@@ -1426,4 +1416,17 @@ nav a:hover {
 .messageDate {
   padding-left: 10px;
   font-size: 12px;
+  color:green;
 }
+
+.heading {
+/* font-family: 'Passion One', cursive; */
+/* font-family: 'Poiret One', cursive; */
+font-family: 'PT Sans Narrow', sans-serif;
+/* font-family: 'Quicksand', sans-serif; */
+/* font-family: 'Thasadith', sans-serif; */
+/* font-family: 'Truculenta', sans-serif; */
+font-size: 35px;
+color: #6c7575;
+}
+

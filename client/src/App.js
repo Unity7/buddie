@@ -22,7 +22,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import NoMatch from './pages/NoMatch';
-import Profile from './pages/Profile';
+// import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 import Taskboard from './pages/Taskboard';
 import SingleMessage from "./pages/SingleMessage";
@@ -73,12 +73,13 @@ function App() {
           <Header />
           <div className="container">
             <Switch>
-              <Route exact path="/" component={Home} />
+              <Route exact path="/dashboard" component={Home} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
-              <Route exact path="/profile/:username?" component={Profile} />
+              {/* <Route exact path="/profile/:username?" component={Profile} /> */}
               <Route exact path="/taskboard" component={Taskboard} />
               <Route exact path="/message/:id" component={SingleMessage} />
+              <Route exact path="/" component={Login} />
               <Route component={NoMatch} />
             </Switch>
           </div>
