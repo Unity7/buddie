@@ -3,8 +3,7 @@ import { useMutation } from '@apollo/client';
 import { ADD_TASK } from '../../utils/mutations';
 // because tasks are contained in a array we are going to use the query below to update the cache and return new tasks submitted in the form, QUERY_ME is being used on the profile page instead of Query taskS so we need to have both
 import { QUERY_TASKS } from '../../utils/queries';
-import ReactDOM from 'react-dom';
-import Button from '@material-ui/core/Button';
+
 
 const TaskForm = ({tasks, setShouldUpdate}) => {
     const [taskText, setText] = useState('');
@@ -74,7 +73,7 @@ const TaskForm = ({tasks, setShouldUpdate}) => {
                     className="form-input col-12 col-md-9"
                     onChange={handleChange}
                 ></textarea>
-                <button className="btn col-12 col-md-3" type="submit">
+                <button className="btn col-12 col-md-3 taskFormBtn" type="submit">
                     Submit
                 </button>
             </form>

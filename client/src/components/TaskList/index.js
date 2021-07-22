@@ -1,18 +1,16 @@
 import React, {useEffect, useState} from 'react';
+// -----------------------------  components ----------------------------- //
 import Toggler from '../Toggler';
 import AssignMenu from '../AssignMenu';
+import DeleteButton from '../DeleteButton';
 // -----------------------------  task list styles ----------------------------- //
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
-
 
  // -----------------------------  task list styles ----------------------------- //
 
-import { useMutation } from '@apollo/client';
-import DeleteButton from '../DeleteButton';
+
 
 // -----------------------------  task list styles ----------------------------- //
 const useStyles = makeStyles((theme) => ({
@@ -50,51 +48,46 @@ const TaskList = ({ tasks, username, setShouldUpdate }) => {
   return (
     <div>
       <Grid id="taskListContainer" container>
-       <Grid item container >
-         <Grid item container id="taskListHeader">
+       <Grid item container>
+         <Grid item container id="taskListHeader" className={classes.paper}>
                 <Grid item sm={1} className="headerItem">
-                  <h4>Owner</h4>
+                  <p>Creator</p>
                 </Grid>
-                <Grid item sm={7} className="headerItem">
-                  <h4>Task</h4>
-                </Grid>
-                <Grid item sm={1} className="headerItem">
-                  <h4>Status</h4>
+                <Grid item sm={6} className="headerItem">
+                  <p>Task</p>
                 </Grid>
                 <Grid item sm={1} className="headerItem">
-                      <h4>Assign</h4>
+                  <p>Status</p>
                 </Grid>
                 <Grid item sm={1} className="headerItem">
-                  <h4>Delete</h4>
+                      <p>Assign</p>
+                </Grid>
+                <Grid item sm={1} className="headerItem">
+                  <p>Delete</p>
                 </Grid>
           </Grid>
         </Grid >
       { tasks &&
         tasks.map(task => (
-          <div className={classes.root}>
-            <Grid key={task._id} className={classes.paper}>
-              <Grid item sm={12} container>
-                <Grid sm={1} item className="taskItem">
-                  <ButtonBase >
-                    <div>CL</div>
+              <Grid container className="task-container" key={task._id}>
+                <Grid xs={12} sm={12} md={1} item className="taskItem">
+                  <ButtonBase>
+                    <div className="task-creator"> <span className="mobile-display">Creator:</span>  {task.username}</div>
                   </ButtonBase>
                 </Grid>
-                <Grid item sm={7} className="taskItem">
-                  <Typography>{task.taskText}</Typography>
+                <Grid item xs={12} sm={12} md={6} className="taskItem">
+                  <p className="taskText">{task.taskText}</p>
                 </Grid>
-                <Grid item sm={1} className="taskItem">
+                <Grid item xs={4} sm={4} md={1} className="taskItem">
                   <Toggler task={task} setShouldUpdate={setShouldUpdate}/>
                 </Grid>
-                <Grid item sm={1} className="taskItem">
+                <Grid item xs={4} sm={4} md={1} className="taskItem">
                   <AssignMenu task={task} setShouldUpdate={setShouldUpdate}/>
-
                 </Grid>
-                <Grid item sm={1} className="taskItem">
+                <Grid item xs={4} sm={4} md={1} className="taskItem">
                   <DeleteButton task={task} setShouldUpdate={setShouldUpdate}/>
                 </Grid>
               </Grid>
-            </Grid>
-          </div>
         ))}
         </Grid>
     </div>
