@@ -1,12 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import { Redirect, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import TaskList from '../components/TaskList';
 import TaskForm from '../components/TaskForm';
-import FriendList from '../components/FriendList';
-import { ADD_FRIEND, ADD_TASK, DELETE_TASK, UPDATE_TASK } from '../utils/mutations';
-import { useQuery, useMutation, useLazyQuery } from '@apollo/client';
+import { useLazyQuery } from '@apollo/client';
 import { QUERY_USERS, QUERY_TASKS } from '../utils/queries';
-import Auth from '../utils/auth';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 
@@ -21,7 +18,7 @@ const Taskboard = () => {
   const { username: userParam } = useParams();
 
   // query for tasks
-  const[getAllTasks, { called, loading, data}] = useLazyQuery(
+  const[getAllTasks, { loading, data}] = useLazyQuery(
     QUERY_TASKS,
     // skip cached data because its annoying 
     {fetchPolicy: "no-cache"}
