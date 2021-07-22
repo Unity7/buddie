@@ -1,13 +1,14 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
-import { QUERY_ME_BASIC, QUERY_MESSAGES } from "../utils/queries"; 
-// add QUERY_TASKS to this import
-import FriendList from "../components/FriendList";
+
+//bring in QUERY_ME_BASIC when needed
+import { QUERY_MESSAGES, QUERY_TASKS } from "../utils/queries"; 
+// import FriendList from "../components/FriendList";
 // import TaskForm from '../components/TaskForm';
 import Auth from "../utils/auth";
 import MessageList from "../components/MessageList";
 import MessageForm from "../components/MessageForm";
-
+import TaskList from "../components/TaskList";
 // import Button from "@material-ui/core/Button";
 // import CssBaseline from "@material-ui/core/CssBaseline";
 // import TextField from "@material-ui/core/TextField";
@@ -24,9 +25,12 @@ const Home = () => {
   // use useQuery hook to make query request
   const { loading, data } = useQuery(QUERY_MESSAGES);
   // use object destructuring to extract `data` from the `useQuery` Hook's response and rename it `userData` to be more descriptive
-  const { data: userData } = useQuery(QUERY_ME_BASIC);
+  // const { data: userData } = useQuery(QUERY_ME_BASIC);
+  const { Taskdata } = useQuery(QUERY_TASKS);
+  
   // optional chaining syntax used below
   const messages = data?.messages || [];
+  const tasks = Taskdata?.tasks || [];
 
   const loggedIn = Auth.loggedIn();
 
@@ -39,8 +43,7 @@ const Home = () => {
         <h2 className="heading">My Tasks</h2>
         {/* <div className="flex-row justify-space-between " > */}
           <div className="flex-row compBorders scroller" >
-         
-        
+          {/* <TaskList tasks={TaskList} /> */}
         
           </div>
           
@@ -65,7 +68,7 @@ const Home = () => {
                   <MessageForm />
                 </div>
               )}
-              {loggedIn && userData ? (
+              {/* {loggedIn && userData ? (
                 <div className="col-lg-3 mb-3">
                   <FriendList
                     username={userData.me.username}
@@ -73,7 +76,7 @@ const Home = () => {
                     friends={userData.me.friends}
                   />
                 </div>
-              ) : null}
+              ) : null} */}
             </div>
           </div>
         </Grid>
