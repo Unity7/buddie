@@ -5,6 +5,7 @@ import { QUERY_MESSAGE } from "../utils/queries";
 import ReactionForm from "../components/ReactionForm";
 import ReactionList from "../components/ReactionList";
 import Auth from "../utils/auth";
+import Grid from "@material-ui/core/Grid";
 
 const SingleMessage = (props) => {
   const { id: messageId } = useParams();
@@ -20,21 +21,28 @@ const SingleMessage = (props) => {
   }
 
   return (
-    <div>
-      <div className="card mb-3">
-        <p className="card-header">
-          <span style={{ fontWeight: 700 }} className="text-light">
-            {message.username}
-          </span>{" "}
-          posted on {message.createdAt}
-        </p>
-        <div className="card-body">
-          <p>{message.messageText}</p>
-        </div>
+    <Grid
+      direction="row"
+      container
+      spacing={12}
+      alignItems="flex-start"
+      justify="center"
+    >
+      <div className="compBorders">
+        <Grid container item sm={12} alignItems="flex-start" justify="center">
+          <span style={{ fontWeight: 800 }} className="">
+            {message.username} : {message.messageText}
+          </span>
+        </Grid>
+        <Grid container item sm={12} alignItems="flex-start" justify="center">
+          <div className="messageDate">{message.createdAt}</div>
+        </Grid>
+        <Grid container item sm={12} alignItems="flex-start" justify="center">
+          {message.replyCount > 0 && <ReactionList replies={message.replies} />}
+        </Grid>
+        {Auth.loggedIn() && <ReactionForm messageId={message._id} />}
       </div>
-      {message.replyCount > 0 && <ReactionList replies={message.replies} />}
-      {Auth.loggedIn() && <ReactionForm messageId={message._id} />}
-    </div>
+    </Grid>
   );
 };
 

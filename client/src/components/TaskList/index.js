@@ -1,21 +1,18 @@
 import React, {useEffect, useState} from 'react';
-import { Link } from 'react-router-dom';
-import { UPDATE_TASK, DELETE_TASK } from '../../utils/mutations';
-
+import Toggler from '../Toggler';
+import AssignMenu from '../AssignMenu';
 // -----------------------------  task list styles ----------------------------- //
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
-import Fab from '@material-ui/core/Fab';
-import DeleteIcon from '@material-ui/icons/Delete';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
+
+
  // -----------------------------  task list styles ----------------------------- //
 
 import { useMutation } from '@apollo/client';
+import DeleteButton from '../DeleteButton';
 
 // -----------------------------  task list styles ----------------------------- //
 const useStyles = makeStyles((theme) => ({
@@ -26,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  
   input: {
     borderRadius: 4,
     backgroundColor: theme.palette.background.paper,
@@ -38,126 +36,67 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
     margin: 'auto',
-    width: 900,
-    maxWidth: 1000,
-  },
-  icon: {
-    width: 128,
-    height: 128,
-    borderRadius: 30,
-    margin: 'auto',
-    display: 'block',
-    maxWidth: '100%',
-    maxHeight: '100%',
-  },
-  taskItem: {
-    height: 128,
-    margin: 'auto',
-    display: 'block',
-    maxWidth: '100%',
-    maxHeight: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-  },
-  statusBtn: {
-
+    width: '85vw',
   }
-  
 }));
 
 // -----------------------------  task list styles ----------------------------- //
-const TaskList = ({ tasks }) => {
+const TaskList = ({ tasks, username, setShouldUpdate }) => {
   const classes = useStyles();
   // if (!tasks.length) {
   //   return <h3>No Tasks Yet</h3>;
   // }
 
-
-  // -------------------------- Set State ------------------------- //
-  // set current state with current taskList object
-  const [state, setTaskList] = useState(...tasks);
-
-  // ----------------------- Updating Tasks ----------------------- //
-  // set state to track changes in status the inital value = false 
-  const [status, setStatus] = useState(false)
-
-// -------------------------- status button click ---------------------- //
-  const handleStatus = event => {
-
-    const currentStatus = event.target.value
-    console.log(`
-    =====================
-    Status Button Cliked
-    =====================
-    Status ${currentStatus}
-    =====================
-    `)
-  }
-// ------------------------------- Deleting Task ---------------------------------------- //
-
-const deleteTask = ({_id}) => {
-  // update state and create new task list without deleted task
-  console.log(`
-    =====================
-    Delete Button Cliked
-    =====================
-    Delete Button Cliked
-    =====================
-    `)
-
-};  
-
   return (
     <div>
+      <Grid id="taskListContainer" container>
+       <Grid item container >
+         <Grid item container id="taskListHeader">
+                <Grid item sm={1} className="headerItem">
+                  <h4>Owner</h4>
+                </Grid>
+                <Grid item sm={7} className="headerItem">
+                  <h4>Task</h4>
+                </Grid>
+                <Grid item sm={1} className="headerItem">
+                  <h4>Status</h4>
+                </Grid>
+                <Grid item sm={1} className="headerItem">
+                      <h4>Assign</h4>
+                </Grid>
+                <Grid item sm={1} className="headerItem">
+                  <h4>Delete</h4>
+                </Grid>
+          </Grid>
+        </Grid >
       { tasks &&
         tasks.map(task => (
           <div className={classes.root}>
-            <Paper key={task._id} className={classes.paper}>
-              <Grid item xs={12} container>
-                <Grid item>
-                  <ButtonBase className={classes.icon}>
+            <Grid key={task._id} className={classes.paper}>
+              <Grid item sm={12} container>
+                <Grid sm={1} item className="taskItem">
+                  <ButtonBase >
                     <div>CL</div>
                   </ButtonBase>
                 </Grid>
-                <Grid item className={classes.taskItem}>
+                <Grid item sm={7} className="taskItem">
                   <Typography>{task.taskText}</Typography>
                 </Grid>
-                <Grid item className={classes.taskItem}>
-                  <ButtonBase>
-                    {!task.taskStatus ? (
-                      // <Button value={task.taskStatus} onClick={handleStatus}>TODO</Button>
-                     <button value={status} onClick={handleStatus}>TODO</button>
-                    ) : (
-                      <button value={status} onClick={handleStatus}>DONE</button>
-                    )}
-                  </ButtonBase>
+                <Grid item sm={1} className="taskItem">
+                  <Toggler task={task} setShouldUpdate={setShouldUpdate}/>
                 </Grid>
-                <Grid item className={classes.taskItem}>
-                  <InputLabel id="demo-customized-select-label">Assigned To:</InputLabel>
-                  <Select
-                    labelId="demo-customized-select-label"
-                    id="demo-customized-select"
-                    onChange={'click'}
-                    className={classes.input}
-                  >
-                    <MenuItem value="">
-                      <em>Choose User</em>
-                    </MenuItem>
-                    <MenuItem value={10}>User</MenuItem>
-                    <MenuItem value={20}>User</MenuItem>
-                    <MenuItem value={30}>User</MenuItem>
-                  </Select>
+                <Grid item sm={1} className="taskItem">
+                  <AssignMenu task={task} setShouldUpdate={setShouldUpdate}/>
+
                 </Grid>
-                <Grid item className={classes.taskItem}>
-                    <Fab color="secondary" aria-label="delete" value={task._id} onClick={deleteTask}>
-                      <DeleteIcon />
-                    </Fab>
+                <Grid item sm={1} className="taskItem">
+                  <DeleteButton task={task} setShouldUpdate={setShouldUpdate}/>
                 </Grid>
               </Grid>
-            </Paper>
+            </Grid>
           </div>
         ))}
+        </Grid>
     </div>
   );
 };
