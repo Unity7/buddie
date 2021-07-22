@@ -1,8 +1,8 @@
-import React from "react";
-import { useQuery } from "@apollo/client";
+import React, { useEffect } from "react";
+import { useQuery, useLazyQuery } from "@apollo/client";
 
 //bring in QUERY_ME_BASIC when needed
-import { QUERY_MESSAGES, QUERY_TASKS } from "../utils/queries"; 
+import { QUERY_MESSAGES, QUERY_TASKS, QUERY_ME } from "../utils/queries"; 
 // import FriendList from "../components/FriendList";
 // import TaskForm from '../components/TaskForm';
 import Auth from "../utils/auth";
@@ -24,15 +24,21 @@ import Grid from "@material-ui/core/Grid";
 const Home = () => {
   // use useQuery hook to make query request
   const { loading, data } = useQuery(QUERY_MESSAGES);
-  // use object destructuring to extract `data` from the `useQuery` Hook's response and rename it `userData` to be more descriptive
-  // const { data: userData } = useQuery(QUERY_ME_BASIC);
-  const { Taskdata } = useQuery(QUERY_TASKS);
+    // use object destructuring to extract `data` from the `useQuery` Hook's response and rename it `userData` to be more descriptive
+  const { data: userData } = useQuery(QUERY_ME);
+  // const { waiting, Taskdata } = useQuery(QUERY_TASKS);
   
   // optional chaining syntax used below
   const messages = data?.messages || [];
-  const tasks = Taskdata?.tasks || [];
 
   const loggedIn = Auth.loggedIn();
+
+  const tasks = userData?.me.tasks || [];
+
+
+  // useEffect(()=>{
+  //   getAllTasks()
+  // },[])
 
   return (
     <main>
@@ -43,10 +49,10 @@ const Home = () => {
         <h2 className="heading">My Tasks</h2>
         {/* <div className="flex-row justify-space-between " > */}
           <div className="flex-row compBorders scroller" >
-          {/* <TaskList tasks={TaskList} /> */}
-        
-          </div>
           
+          <TaskList tasks={tasks.taskText.taskText} />
+          </div>
+        
           
         </Grid>
         {/* <Grid container item sm={6} > */}
