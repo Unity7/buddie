@@ -1,12 +1,9 @@
 import { useMutation } from '@apollo/client';
-import { update } from 'lodash';
 import React, { useEffect, useState } from 'react';
 import { UPDATE_TASK } from '../utils/mutations';
 
 const Toggler = ({ task, setShouldUpdate }) => {
-    // ----------- set state for task's status the task --------- //
-    // const [status, setStatus] = useState('')
-
+    
     // --------- definie mutation to update status to in gql ---------- //
     const [updateState] = useMutation(UPDATE_TASK, {
         onCompleted: () => {

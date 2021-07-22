@@ -295,10 +295,25 @@ font-family: 'Quicksand', sans-serif;
   background-color:  #c51162;
 }
 
+/* .assign-input {
+  border-radius: 4px;
+  background-color: #f0f0f0;
+  font-family: 'Thasadith', sans-serif;
+  border: 1px solid #ced4da;
+  font-size: 16;
+  font-weight: 700;
+  padding: 5px 26px 5px 12px;
+  max-width: 80px;
+} */
+
 .statusBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 20px;
   height: 56px;
   min-height: 36px;
+  font-size: 1.2rem;
   border-radius: 40px;
   border: none;
   color: #ffff;
@@ -308,20 +323,23 @@ font-family: 'Quicksand', sans-serif;
     180deg
     , #ffe48b 50%, #FAD02C 85%);
   box-shadow: 0px 3px 5px -1px rgb(0 0 0 / 20%), 0px 6px 10px 0px rgb(0 0 0 / 14%), 0px 1px 18px 0px rgb(0 0 0 / 12%);
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 250ms ccubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
 
 #taskListHeader {
   height: 100px;
   width: 100%;
+  font-size: 0.875rem;
   text-align: center;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
   background-image: linear-gradient(
     180deg
     , #ffe48b 50%, #FAD02C 85%);
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-end;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
 }
 
 #taskListContainer{
@@ -338,16 +356,29 @@ font-family: 'Quicksand', sans-serif;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
+  
+}
 
+.headerItem p {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.task-container {
+  height: 100px;
+  width: 100%;
+  font-size: 0.875rem;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid rgba(18, 113, 215, .2);
+  border-radius: 30px;
 }
 
 .taskItem {
-  height: 128px;
-  width: 100%;
   margin: auto;
-  display: block;
-  max-width: 100%;
-  max-height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -356,6 +387,101 @@ font-family: 'Quicksand', sans-serif;
 
 
 
+.taskText{
+  font-size: 1.3rem;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 900;
+}
+
+.task-creator {
+  font-size: 1.5rem;
+  font-family: 'Thasadith', sans-serif;
+}
+.mobile-display {
+  display: none;
+}
+
+.taskFormBtn {
+  background: linear-gradient(92deg, #f3cb2e, #ecb252, #f57972);
+  background-size: 400% 400%;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px, rgba(0, 0, 0, 0.1) 0px 8px 16px;
+  color: rgb(18, 113, 215);
+  
+
+  -webkit-animation: AnimationName 15s ease infinite;
+  -moz-animation: AnimationName 15s ease infinite;
+  animation: AnimationName 15s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@-moz-keyframes AnimationName {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@keyframes AnimationName {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+
+@media screen and (max-width: 1080px){
+  .task-container  {
+    height: 200px;
+    border-bottom: 1px solid rgba(18, 113, 215, .2);
+    border-radius: 30px;
+    padding-bottom: 10px;
+  }
+
+  .headerItem p {
+    font-size: 1.2rem;
+  }
+
+  .taskText{
+    font-size: 1rem;
+    padding:  10px 0;
+  }
+
+  .deleteBtn, .statusBtn {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+
+@media screen and (max-width: 800px) {
+  .hide-mobile, .headerItem {
+    display: none;
+  }
+
+  .taskText{
+    font-size: 1rem;
+  }
+
+  #taskListHeader {
+    height: 40px;
+    width: 100%;
+    
+  }
+
+  .task-container  {
+    height: 200px;
+  }
+
+  .sele
+  .mobile-display {
+    display: inline-flex;
+  }
+}
+
+
+/* ---------------------------------------End TaskBoard Style ---------------------------------------- */
 
 /* FORM */
 .form-label,

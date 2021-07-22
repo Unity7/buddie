@@ -3,9 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { UPDATE_TASK } from '../utils/mutations';
 import { QUERY_USERS } from '../utils/queries';
 import { makeStyles } from '@material-ui/core/styles';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import { update } from 'lodash';
+
 
 const useStyles = makeStyles((theme) => ({
     input: {
