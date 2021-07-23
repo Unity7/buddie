@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import TaskList from '../components/TaskList';
 import TaskForm from '../components/TaskForm';
 import { useLazyQuery } from '@apollo/client';
-import { QUERY_USERS, QUERY_TASKS } from '../utils/queries';
+import { QUERY_TASKS } from '../utils/queries';
 // import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 
@@ -16,7 +16,7 @@ const Taskboard = () => {
 
 
   const { username: userParam } = useParams();
-
+  
   // query for tasks
   const[getAllTasks, { loading, data}] = useLazyQuery(
     QUERY_TASKS,

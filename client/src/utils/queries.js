@@ -27,6 +27,17 @@ export const QUERY_TASK = gql`
   }
 `;
 
+export const QUERY_USERS_TASKS = gql `
+  query usersTasks($assignedID: String!){
+      usersTasks(assignedID: $assignedID) {
+      taskText
+      taskStatus
+      createdAt
+      username
+    }
+  }
+`;
+
 export const QUERY_USER = gql`
   query user($username: String!) {
     user(username: $username) {

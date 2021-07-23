@@ -21,9 +21,13 @@ const resolvers = {
       }
       throw new AuthenticationError("Not logged in");
     },
-    // -------- get all tasks ---- Question: if we just want all tasks and don't care about the user part how would we change this?
+    // -------- get all tasks ------ //
     tasks: async () => {
-      return Task.find().sort({ createdAt: -1 });
+      return Task.find();
+    },
+    // -------- get all tasks by assignedID------ //
+    usersTasks: async (parent, { assignedID }) => {
+      return Task.find({ assignedID });
     },
     // -------------- find a single task -------------- //
     task: async (parent, { _id }) => {

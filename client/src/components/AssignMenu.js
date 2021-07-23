@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const AssignMenu = () => {
+const AssignMenu = ({ task, setShouldUpdate }) => {
     // ----------------------- styles ---------------------------- //
     const classes = useStyles();
     // ---------------------- get user data ---------------------- //
@@ -28,23 +28,21 @@ const AssignMenu = () => {
     const [assign, setAssign] = useState('')
 
     // --------- definie mutation to update assigned to in gql ---------- //
-    const [updateState, { error }] = useMutation(UPDATE_TASK)
-
-
+    const [updateAssign, { error }] = useMutation(UPDATE_TASK)
 
     // ---------------------- handle select's onChange ---------------------- //
     const handleChange = (e) => {
-
         // update assigned user based on form input 
         const assign = e.target.value
         setAssign(assign)
-        
+        // update backend
+        updateAssign({ variables: { assignedID: assign, _id: task._id } })
         console.log(`
         =====================
         OnChange Assigned To
         =====================
         Assigned To ${assign}
-        User ${users.username}
+        Task ID ${task._id}
         =====================
         `)
     };

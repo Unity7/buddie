@@ -95,32 +95,3 @@ export const UPDATE_TASK = gql `
     }
   }
 `;
-
-// delete later
-export const ADD_REACTION = gql`
-  mutation addFriend($friendId: ID!) {
-    addFriend(friendId: $friendId) {
-      _id
-      username
-      friendCount
-      friends {
-        _id
-        username
-      }
-    }
-  }
-`;
-
-export const ADD_THOUGHT = gql`
-  mutation addFriend($friendId: ID!) {
-    addFriend(friendId: $friendId) {
-      _id
-      username
-      friendCount
-      friends {
-        _id
-        username
-      }
-    }
-  }
-`;
