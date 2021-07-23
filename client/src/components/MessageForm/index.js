@@ -69,13 +69,13 @@ const MessageForm = () => {
         {error && <span className="ml-2">Something went wrong...</span>}
       </p>
       <form
-        className="flex-row justify-space-between-sm "
+        className="flex-row justify-space-between-submit "
         onSubmit={handleFormSubmit}
       >
         <textarea
           placeholder="Type a message"
           value={messageText}
-          className="form-input col-md-8"
+          className="form-input col-md-9"
           onChange={handleChange}
         ></textarea>
   

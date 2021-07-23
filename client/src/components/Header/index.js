@@ -23,7 +23,6 @@ const Header = () => {
         <nav className="text-center navFont">
           {Auth.loggedIn() ? (
             <>
-              {/* if logged in go to dashboard? */}
               <Link to="/dashboard">DASHBOARD</Link>
               <Link to="/taskboard">TASKBOARD</Link>
               {/* <Link to="/profile">MY PROFILE</Link> */}
