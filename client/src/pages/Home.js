@@ -8,7 +8,7 @@ import { QUERY_MESSAGES, QUERY_TASKS, QUERY_ME } from "../utils/queries";
 import Auth from "../utils/auth";
 import MessageList from "../components/MessageList";
 import MessageForm from "../components/MessageForm";
-import TaskList from "../components/TaskList";
+import DashTask from "../components/DashTask";
 // import Button from "@material-ui/core/Button";
 // import CssBaseline from "@material-ui/core/CssBaseline";
 // import TextField from "@material-ui/core/TextField";
@@ -48,9 +48,10 @@ const Home = () => {
         <Grid  item sm={6} >
         <h2 className="heading">My Tasks</h2>
         {/* <div className="flex-row justify-space-between " > */}
-          <div className="flex-row compBorders scroller" >
+          <div className={`${loggedIn } flex-row compBorders scroller`} >
           
-          <TaskList tasks={tasks.taskText.taskText} />
+          <DashTask tasks={tasks} />
+
           </div>
         
           

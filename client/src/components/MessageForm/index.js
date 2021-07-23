@@ -61,7 +61,7 @@ const MessageForm = () => {
   };
 
   return (
-    <div>
+    <div className="chatForm">
       <p
         className={`chatStyle ${characterCount === 280 || error ? "text-error" : ""}`}
       >
@@ -69,18 +69,18 @@ const MessageForm = () => {
         {error && <span className="ml-2">Something went wrong...</span>}
       </p>
       <form
-        className="flex-row justify-center justify-space-between-md align-stretch"
+        className="flex-row justify-space-between-sm "
         onSubmit={handleFormSubmit}
       >
         <textarea
           placeholder="Type a message"
           value={messageText}
-          className="form-input col-12 col-md-9"
+          className="form-input col-md-8"
           onChange={handleChange}
         ></textarea>
   
-        <button className="btn col-12 col-md-3 bg-success" type="submit">
-          Submit
+        <button className="taskFormBtn btn col-md-2 " type="submit">
+          SUBMIT
         </button>
 
       </form>
