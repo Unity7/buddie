@@ -4,7 +4,7 @@ import TaskList from '../components/TaskList';
 import TaskForm from '../components/TaskForm';
 import { useLazyQuery } from '@apollo/client';
 import { QUERY_USERS, QUERY_TASKS } from '../utils/queries';
-import CssBaseline from '@material-ui/core/CssBaseline';
+// import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 
 
@@ -52,7 +52,7 @@ const Taskboard = () => {
 
   return (
     <div>
-      <CssBaseline/>
+      {/* <CssBaseline/> */}
       <Container maxWidth="lg">
         <h1>Viewing Your Pod's Taskboard.</h1>
         <br/>

@@ -102,6 +102,7 @@ footer{
   font-size: 13px;
 }
 
+
 nav {
   width: 100%;
   justify-content: center;
@@ -121,13 +122,7 @@ nav a:hover {
 }
 
 .navFont {
-/* font-family: 'Passion One', cursive;  */
-/* font-family: 'Poiret One', cursive; */
-/* font-family: 'PT Sans Narrow', sans-serif; */
-/* font-family: 'Quicksand', sans-serif; */
 font-family: 'Thasadith', sans-serif;
-/* font-family: 'Truculenta', sans-serif; */
-
 }
 
 .page-title {
@@ -161,34 +156,21 @@ font-family: 'Thasadith', sans-serif;
   display: inline;
 }
 
-/* CARDS */
-.card {
-  margin: 0 0 20px 0;
-  border: 3px solid var(--dark);
-  border-radius: var(--border-radius);
-  background-color: var(--light);
-  color: var(--dark);
-}
 
-.card-header {
-  color: var(--secondary);
-  margin: 0;
-  background-color: var(--dark);
-  padding: 0.625rem;
-  border-radius: calc(0.18rem - 1px) calc(0.18rem - 1px) 0 0;
-}
+/* ----------------------- Dashboard Styles ------------------------- */
 
-.card-body {
-  padding: 2.5%;
-  font-size: 1.4rem;
-}
-
-/* .credCards {
+.credCardsSignup {
+  background: linear-gradient(92deg, #f3cb2e, #ecb252, #f57972);
+  background-size: 400% 400%;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px, rgba(0, 0, 0, 0.1) 0px 8px 16px;
-  height: 325px;
-  background-color: #fad02c;
-} */
+  color: rgb(18, 113, 215);
+  
+
+  -webkit-animation: AnimationName 15s ease infinite;
+  -moz-animation: AnimationName 15s ease infinite;
+  animation: AnimationName 15s ease infinite;
+}
 
 .credCards {
   background: linear-gradient(92deg, #f3cb2e, #ecb252, #f57972);
@@ -199,9 +181,9 @@ font-family: 'Thasadith', sans-serif;
   color: rgb(18, 113, 215);
   
 
-  -webkit-animation: AnimationName 15s ease infinite;
-  -moz-animation: AnimationName 15s ease infinite;
-  animation: AnimationName 15s ease infinite;
+  -webkit-animation: AnimationName 13s ease infinite;
+  -moz-animation: AnimationName 13s ease infinite;
+  animation: AnimationName 13s ease infinite;
 }
 
 @-webkit-keyframes AnimationName {
@@ -222,7 +204,9 @@ font-family: 'Thasadith', sans-serif;
 
 .compBorders {
   border-radius: 22px;
-  background-color: #f3cb2e;
+  background-image: linear-gradient( 
+    180deg
+     , #ffe48b 50%, #FAD02C 85%);
   width: 540px;
   max-width:540px; 
   height: 600px;
@@ -232,12 +216,7 @@ font-family: 'Thasadith', sans-serif;
   padding-left: 15px;
   padding-top: 26px;
   font-size: 15px;
-  /* font-family: 'Passion One', cursive;  */
-/* font-family: 'Poiret One', cursive; */
-/* font-family: 'PT Sans Narrow', sans-serif; */
-font-family: 'Quicksand', sans-serif;
-/* font-family: 'Thasadith', sans-serif; */
-/* font-family: 'Truculenta', sans-serif; */
+  font-family: 'Quicksand', sans-serif;
 }
 
 .nameStyle{
@@ -246,10 +225,25 @@ font-family: 'Quicksand', sans-serif;
   font-size: 16px;
 }
 
+.myTaskStyle{
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-weight: bold;
+  color: maroon;
+  display: flex;
+}
+
+.myTaskIcon {
+  padding-left: 10px;
+  color: steelblue;
+  height: 15px !important;
+  padding-inline: 10px;
+}
+
 .chatStyle{
   color: darkblue;
   font-size: 15px;
   font-family: 'Thasadith', sans-serif;
+  padding-top: 10px;
 }
 
 .scroller {
@@ -261,6 +255,7 @@ font-family: 'Quicksand', sans-serif;
 .scroller::-webkit-scrollbar {
   display: none; 
 }
+
 /* ------------------------------------------- Taskboard Styles --------------------------------------- */
 /* linear-gradient(92deg, #f3cb2e, #ecb252, #f57972); */
 .deleteBtn {
@@ -362,6 +357,7 @@ font-family: 'Quicksand', sans-serif;
 .headerItem p {
   font-size: 1.5rem;
   font-weight: 700;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
 .task-container {
@@ -1052,26 +1048,6 @@ font-family: 'Quicksand', sans-serif;
   color: var(--error);
 }
 
-/* BACKGROUND UTILS */
-.bg-primary {
-  background-color: var(--primary);
-}
-
-.bg-secondary {
-  background-color: var(--secondary);
-}
-
-.bg-tertiary {
-  background-color: var(--tertiary);
-}
-
-.bg-light {
-  background-color: var(--light);
-}
-
-.bg-dark {
-  background-color: var(--dark);
-}
 
 /* FLEX CONTENT */
 .flex-row {
@@ -1228,6 +1204,11 @@ font-family: 'Quicksand', sans-serif;
   .justify-space-between-sm {
     justify-content: space-between;
   }
+
+  /* .justify-space-between-submit {
+    justify-content: space-between;
+    margin-right: 50px;
+  } */
 
   .justify-space-around-sm {
     justify-content: space-around;

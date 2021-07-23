@@ -38,7 +38,7 @@ const Signup = () => {
       const { data } = await addUser({
         variables: { ...formState },
       });
-      Auth.login(data.addUser.token);
+      Auth.signup(data.addUser.token);
     } catch (e) {
       console.error(e);
     }
@@ -63,7 +63,7 @@ const Signup = () => {
   const classes = useStyles();
 
   return (
-    <Container component="main" maxWidth="xs" className="credCards">
+    <Container component="main" maxWidth="xs" className="credCardsSignup">
       <CssBaseline />
       <div className={classes.paper}>
         <form className={classes.form} noValidate onSubmit={handleFormSubmit}>
@@ -130,12 +130,8 @@ const Signup = () => {
                 onChange={handleChange}
               />
             </Grid>
-
             <Grid item xs={12}>
-              {error && <div>Sign up failed</div>}
-            </Grid>
-          </Grid>
-          <Button
+            <Button
             type="submit"
             fullWidth
             variant="contained"
@@ -144,6 +140,20 @@ const Signup = () => {
           >
             Sign Up
           </Button>
+          </Grid>
+            <Grid item xs={12}>
+              {error && <div>Sign up failed</div>}
+            </Grid>
+          </Grid>
+          {/* <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            Sign Up
+          </Button> */}
           <Grid container justifyContent="flex-end">
             <Grid item>
               <Link href="/login" variant="body2">

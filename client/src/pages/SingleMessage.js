@@ -6,6 +6,7 @@ import ReactionForm from "../components/ReactionForm";
 import ReactionList from "../components/ReactionList";
 import Auth from "../utils/auth";
 import Grid from "@material-ui/core/Grid";
+import MessageList from "../components/MessageList";
 
 const SingleMessage = (props) => {
   const { id: messageId } = useParams();
@@ -21,6 +22,7 @@ const SingleMessage = (props) => {
   }
 
   return (
+    
     <Grid
       direction="row"
       container
@@ -28,7 +30,8 @@ const SingleMessage = (props) => {
       alignItems="flex-start"
       justify="center"
     >
-      <div className="compBorders">
+      {/* <h2>You are viewing {message.username}'s Message</h2> */}
+      <div className="compBorders scroller">
         <Grid container item sm={12} alignItems="flex-start" justify="center">
           <span style={{ fontWeight: 800 }} className="">
             {message.username} : {message.messageText}

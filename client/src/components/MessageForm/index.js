@@ -3,6 +3,7 @@ import { useMutation } from "@apollo/client";
 import { ADD_MESSAGE } from "../../utils/mutations";
 // because messages are contained in a array we are going to use the query below to update the cache and return new messages submitted in the form, QUERY_ME is being used on the profile page instead of Query MESSAGES so we need to have both
 import { QUERY_MESSAGES, QUERY_ME } from "../../utils/queries";
+import SendIcon from '@material-ui/icons/Send';
 
 const MessageForm = () => {
   const [messageText, setText] = useState("");
@@ -61,7 +62,7 @@ const MessageForm = () => {
   };
 
   return (
-    <div>
+    <div className="chatForm">
       <p
         className={`chatStyle ${characterCount === 280 || error ? "text-error" : ""}`}
       >
@@ -69,19 +70,20 @@ const MessageForm = () => {
         {error && <span className="ml-2">Something went wrong...</span>}
       </p>
       <form
-        className="flex-row justify-center justify-space-between-md align-stretch"
+        className="flex-row justify-space-between-submit "
         onSubmit={handleFormSubmit}
       >
         <textarea
           placeholder="Type a message"
           value={messageText}
-          className="form-input col-12 col-md-9"
+          className="form-input col-md-9"
           onChange={handleChange}
         ></textarea>
   
-        <button className="btn col-12 col-md-3 bg-success" type="submit">
-          Submit
+        <button className="taskFormBtn btn col-md-2 " type="submit">
+          <span><SendIcon></SendIcon></span>
         </button>
+        
 
       </form>
     </div>

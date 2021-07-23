@@ -44,6 +44,7 @@ const AssignMenu = () => {
         OnChange Assigned To
         =====================
         Assigned To ${assign}
+        User ${users.username}
         =====================
         `)
     };
