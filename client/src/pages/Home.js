@@ -36,10 +36,6 @@ const Home = () => {
   const tasks = userData?.me.tasks || [];
 
 
-  // useEffect(()=>{
-  //   getAllTasks()
-  // },[])
-
   return (
     <main>
       <Grid direction="row" container spacing={2}>

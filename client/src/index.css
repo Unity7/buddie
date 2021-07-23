@@ -164,6 +164,19 @@ font-family: 'Thasadith', sans-serif;
 
 /* ----------------------- Dashboard Styles ------------------------- */
 
+.credCardsSignup {
+  background: linear-gradient(92deg, #f3cb2e, #ecb252, #f57972);
+  background-size: 400% 400%;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px, rgba(0, 0, 0, 0.1) 0px 8px 16px;
+  color: rgb(18, 113, 215);
+  
+
+  -webkit-animation: AnimationName 15s ease infinite;
+  -moz-animation: AnimationName 15s ease infinite;
+  animation: AnimationName 15s ease infinite;
+}
+
 .credCards {
   background: linear-gradient(92deg, #f3cb2e, #ecb252, #f57972);
   background-size: 400% 400%;
@@ -173,9 +186,9 @@ font-family: 'Thasadith', sans-serif;
   color: rgb(18, 113, 215);
   
 
-  -webkit-animation: AnimationName 15s ease infinite;
-  -moz-animation: AnimationName 15s ease infinite;
-  animation: AnimationName 15s ease infinite;
+  -webkit-animation: AnimationName 13s ease infinite;
+  -moz-animation: AnimationName 13s ease infinite;
+  animation: AnimationName 13s ease infinite;
 }
 
 @-webkit-keyframes AnimationName {
