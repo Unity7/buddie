@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from 'react';
+import { useQuery } from "@apollo/client";
+import { QUERY_USERS_TASKS } from '../../utils/queries';
 // -----------------------------  components ----------------------------- //
 import Toggler from '../Toggler';
 import AssignMenu from '../AssignMenu';
@@ -7,10 +9,6 @@ import DeleteButton from '../DeleteButton';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import ButtonBase from '@material-ui/core/ButtonBase';
-
- // -----------------------------  task list styles ----------------------------- //
-
-
 
 // -----------------------------  task list styles ----------------------------- //
 const useStyles = makeStyles((theme) => ({
@@ -37,13 +35,16 @@ const useStyles = makeStyles((theme) => ({
     width: '85vw',
   }
 }));
-
 // -----------------------------  task list styles ----------------------------- //
+
+
 const TaskList = ({ tasks, username, setShouldUpdate }) => {
   const classes = useStyles();
   // if (!tasks.length) {
   //   return <h3>No Tasks Yet</h3>;
   // }
+
+
 
   return (
     <div>

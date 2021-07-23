@@ -51,6 +51,7 @@ const typeDefs = gql`
     users: [User]
     user(username: String!): User
     tasks: [Task]
+    usersTasks(assignedID: String!): [Task]
     task(_id: ID!): Task
     messages: [Message]
     message(_id: ID!): Message
