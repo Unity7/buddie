@@ -3,6 +3,7 @@ import { useMutation } from "@apollo/client";
 import { ADD_MESSAGE } from "../../utils/mutations";
 // because messages are contained in a array we are going to use the query below to update the cache and return new messages submitted in the form, QUERY_ME is being used on the profile page instead of Query MESSAGES so we need to have both
 import { QUERY_MESSAGES, QUERY_ME } from "../../utils/queries";
+import SendIcon from '@material-ui/icons/Send';
 
 const MessageForm = () => {
   const [messageText, setText] = useState("");
@@ -80,8 +81,9 @@ const MessageForm = () => {
         ></textarea>
   
         <button className="taskFormBtn btn col-md-2 " type="submit">
-          SUBMIT
+          <span><SendIcon></SendIcon></span>
         </button>
+        
 
       </form>
     </div>

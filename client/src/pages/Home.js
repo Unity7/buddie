@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useQuery, useLazyQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 
 //bring in QUERY_ME_BASIC when needed
 import { QUERY_MESSAGES, QUERY_TASKS, QUERY_ME } from "../utils/queries"; 
@@ -9,17 +9,7 @@ import Auth from "../utils/auth";
 import MessageList from "../components/MessageList";
 import MessageForm from "../components/MessageForm";
 import DashTask from "../components/DashTask";
-// import Button from "@material-ui/core/Button";
-// import CssBaseline from "@material-ui/core/CssBaseline";
-// import TextField from "@material-ui/core/TextField";
-// import FormControlLabel from "@material-ui/core/FormControlLabel";
-// import Checkbox from "@material-ui/core/Checkbox";
-// import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
-// import Box from "@material-ui/core/Box";
-// import Typography from "@material-ui/core/Typography";
-// import { makeStyles } from "@material-ui/core/styles";
-// import Container from "@material-ui/core/Container";
 
 const Home = () => {
   // use useQuery hook to make query request
@@ -39,11 +29,8 @@ const Home = () => {
   return (
     <main>
       <Grid direction="row" container spacing={2}>
-      {/* <h2 className="heading">My Tasks</h2> */}
-        {/* <Grid container item sm={6}original-grid-below > */}
         <Grid  item sm={6} >
         <h2 className="heading">My Tasks</h2>
-        {/* <div className="flex-row justify-space-between " > */}
           <div className={`${loggedIn } flex-row compBorders scroller`} >
           
           <DashTask tasks={tasks} />
@@ -52,11 +39,8 @@ const Home = () => {
         
           
         </Grid>
-        {/* <Grid container item sm={6} > */}
         <Grid item sm={6} >
-          {/* <div className="flex-row justify-space-between "> */}
           <div className=" ">
-            {/* <div className={`col-12  ${loggedIn && "col-lg-8"}`}> */}
             <h2 className="heading">Messages</h2>
             <div className={` ${loggedIn }`}>
               {loading ? (

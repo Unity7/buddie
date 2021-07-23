@@ -204,7 +204,9 @@ font-family: 'Thasadith', sans-serif;
 
 .compBorders {
   border-radius: 22px;
-  background-color: #f3cb2e;
+  background-image: linear-gradient( 
+    180deg
+     , #ffe48b 50%, #FAD02C 85%);
   width: 540px;
   max-width:540px; 
   height: 600px;
@@ -1203,10 +1205,10 @@ font-family: 'Thasadith', sans-serif;
     justify-content: space-between;
   }
 
-  .justify-space-between-submit {
+  /* .justify-space-between-submit {
     justify-content: space-between;
     margin-right: 50px;
-  }
+  } */
 
   .justify-space-around-sm {
     justify-content: space-around;
