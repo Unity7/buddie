@@ -2,47 +2,53 @@ import React, { useEffect } from "react";
 import { useQuery } from "@apollo/client";
 
 //bring in QUERY_ME_BASIC when needed
-import { QUERY_MESSAGES, QUERY_TASKS, QUERY_ME } from "../utils/queries"; 
+import { QUERY_MESSAGES, QUERY_USERS_TASKS, QUERY_ME } from "../utils/queries";
 // import FriendList from "../components/FriendList";
 // import TaskForm from '../components/TaskForm';
 import Auth from "../utils/auth";
 import MessageList from "../components/MessageList";
 import MessageForm from "../components/MessageForm";
 import DashTask from "../components/DashTask";
+// import AssignMenu from '../AssignMenu';
 import Grid from "@material-ui/core/Grid";
 
 const Home = () => {
   // use useQuery hook to make query request
   const { loading, data } = useQuery(QUERY_MESSAGES);
-    // use object destructuring to extract `data` from the `useQuery` Hook's response and rename it `userData` to be more descriptive
+  // use object destructuring to extract `data` from the `useQuery` Hook's response and rename it `userData` to be more descriptive
   const { data: userData } = useQuery(QUERY_ME);
-  // const { waiting, Taskdata } = useQuery(QUERY_TASKS);
-  
+
+  const { data: taskdata } = useQuery(QUERY_USERS_TASKS);
+
   // optional chaining syntax used below
   const messages = data?.messages || [];
 
   const loggedIn = Auth.loggedIn();
 
   const tasks = userData?.me.tasks || [];
+  const Task = taskdata?.usersTasks || [];
 
+  console.log(tasks);
+  console.log(Task);
 
   return (
     <main>
       <Grid direction="row" container spacing={2}>
-        <Grid  item sm={6} >
-        <h2 className="heading">My Tasks</h2>
-          <div className={`${loggedIn } flex-row compBorders scroller`} >
-          
-          <DashTask tasks={tasks} />
-
+        <Grid item sm={6}>
+          <h2 className="heading">My Tasks</h2>
+          <div className={`${loggedIn} flex-row compBorders scroller`}>
+            {/* {waiting ? (
+              <div>Processing...</div>
+             ) : (  */}
+             <DashTask tasks={tasks} />
+             
+             {/* )} */}
           </div>
-        
-          
         </Grid>
-        <Grid item sm={6} >
+        <Grid item sm={6}>
           <div className=" ">
             <h2 className="heading">Messages</h2>
-            <div className={` ${loggedIn }`}>
+            <div className={` ${loggedIn}`}>
               {loading ? (
                 <div>Loading...</div>
               ) : (
@@ -51,7 +57,7 @@ const Home = () => {
                 </div>
               )}
               {loggedIn && (
-                <div className="col-12 mb-3" >
+                <div className="col-12 mb-3">
                   <MessageForm />
                 </div>
               )}

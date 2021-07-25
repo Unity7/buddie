@@ -1434,6 +1434,10 @@ font-family: 'Thasadith', sans-serif;
     flex: 0 0 calc(100% * 2 / 12 - 0.5%);
   }
 
+  /* .compBorders {
+    width: 500px;
+  } */
+
   .col-xl-3 {
     flex: 0 0 calc(100% * 3 / 12 - 0.5%);
   }
