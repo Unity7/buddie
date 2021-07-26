@@ -36,5 +36,7 @@ local test
 ## Questions
 
 GitHub: https://github.com/Unity7
+GitHub: https://github.com/celinalou92
+GitHub: https://github.com/ChelcieDeAlmeida
 
 https://buddie-app.herokuapp.com/
