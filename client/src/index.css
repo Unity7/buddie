@@ -114,7 +114,7 @@ nav a {
 }
 
 nav a:hover {
-  color: #333652;
+  color: maroon;
   border-radius: 22px;
   background-image: linear-gradient(
     180deg
